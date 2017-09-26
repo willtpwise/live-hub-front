@@ -1,0 +1,62 @@
+<style src="./profile.scss" lang='scss'></style>
+<script src="./profile.js"></script>
+<template>
+  <article class="user">
+    <header class="hero is-primary user-header">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-4">
+              <figure class="user-display">
+                <img :src='user.display[0].src' :alt='user.first_name + " " + user.last_name'>
+              </figure>
+            </div>
+            <div class="column user-intro">
+              <div>
+                <h2 class="title is-2">
+                  {{user.first_name}} {{user.last_name}}
+                </h2>
+                <p class="subtitle" v-if='user.nick_name'>
+                  <span title='Nickname'>{{user.nick_name}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section user-main">
+      <div class="container">
+        <div class="columns">
+          <aside class="column is-4">
+
+            <div class="user-instruments">
+              <user-details
+                heading="Instruments"
+                :details='user.instruments'
+                default-icon="fa-music"></user-details>
+            </div>
+
+            <div class="user-details">
+              <user-details
+                heading="Contact"
+                :details='user.details.contact'></user-details>
+            </div>
+
+            <div class="user-details">
+              <user-details
+                heading="Connect"
+                :details='user.details.social'></user-details>
+            </div>
+
+          </aside>
+
+          <main class="column">
+            {{user.bio}}
+          </main>
+
+        </div>
+      </div>
+    </section>
+  </article>
+</template>

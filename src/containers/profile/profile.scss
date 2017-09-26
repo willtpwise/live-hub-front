@@ -1,0 +1,17 @@
+.user {
+  .user-display {
+    img {
+      border-radius: 50%;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .user-intro {
+    display: flex;
+    > div {
+      margin: auto 0;
+    }
+  }
+}
