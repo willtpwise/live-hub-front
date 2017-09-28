@@ -2,7 +2,6 @@
 <script src='./signup.js'></script>
 <template>
   <article class="signup">
-
     <div class="section is-medium has-text-centered" v-if='signupMethod === "social"'>
       <div class="container">
         <header class="hero">
@@ -39,13 +38,13 @@
           </div>
         </header>
         <section>
-          <form @submit="altSubmit">
+          <form @submit="altSubmit($event)">
             <div class="columns">
               <div class="column">
                 <div class="field">
                   <label class="label" for='first_name'>First name</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" name="first_name" id='first_name' :v-model='user.first_name'>
+                    <input class="input" type="text" name="first_name" id='first_name' v-model='user.first_name'>
                     <span class="icon is-small is-left">
                       <i class="fa fa-user"></i>
                     </span>
@@ -56,7 +55,7 @@
                 <div class="field">
                   <label class="label" for='last_name'>Last name</label>
                   <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" name="last_name" id='last_name' :v-model='user.last_name'>
+                    <input class="input" type="text" name="last_name" id='last_name' v-model='user.last_name'>
                     <span class="icon is-small is-left">
                       <i class="fa fa-user"></i>
                     </span>
@@ -67,7 +66,7 @@
             <div class="field">
               <label class="label" for='email'>Email address</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input" type="email" name="email" id='email' :v-model='user.email'>
+                <input class="input" type="email" name="email" id='email' v-model='user.email'>
                 <span class="icon is-small is-left">
                   <i class="fa fa-envelope"></i>
                 </span>
@@ -76,12 +75,20 @@
                 You'll need your email address to sign in later.
               </p>
             </div>
+            <password-field @passwordChange="acceptPassword($event)"></password-field>
             <div class="field has-text-right">
               <button type="submit" class="button is-primary">Create my account</button>
             </div>
-
           </form>
         </section>
+      </div>
+    </div>
+
+    <div class="section" v-if='error'>
+      <div class="container">
+        <div class="notification is-warning">
+          {{error}}
+        </div>
       </div>
     </div>
   </article>

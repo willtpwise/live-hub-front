@@ -6,7 +6,7 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="http://bulma.io">
-            <img src="http://bulma.io/images/bulma-logo.png" alt="." width="112" height="28">
+            <img src="http://placehold.it/112x28" alt="." width="112" height="28">
           </a>
         </div>
         <button class="button navbar-burger">
@@ -21,15 +21,12 @@
           </div>
 
           <div class="navbar-end">
-            <a class="navbar-item">
-              Home
-            </a>
-            <a class="navbar-item">
-              <span class="icon">
-                <i class="fa fa-cogs"></i>
-              </span>
-              Home
-            </a>
+            <router-link to='/app/signup' class="navbar-item">
+              Signup
+            </router-link>
+            <router-link to='/app/myaccount' class="navbar-item">
+              Myaccount
+            </router-link>
           </div>
         </div>
       </div>

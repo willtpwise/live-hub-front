@@ -1,11 +1,10 @@
 export default {
   name: 'password-field',
-  props: ['password'],
   data () {
     return {
       passwordValidation: {
         rules: {
-          regex: /.(js|ts)$/
+          regex: /.([a-z][0-9])$/
         }
       },
       passwordInitial: '',
@@ -15,6 +14,9 @@ export default {
     }
   },
   watch: {
+    passwordsMatch () {
+      this.$emit('passwordChange', this.passwordInitial)
+    },
     passwordInitial () {
       this.passwordsMatch = this.checkPasswordsMatch()
     },

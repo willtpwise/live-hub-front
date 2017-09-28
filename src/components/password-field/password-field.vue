@@ -3,14 +3,13 @@
 <template>
   <div class="password-field">
     <div class="field">
-      <label class="label" for='password'>New password</label>
+      <label class="label" for='password'>Password</label>
       <div class="control has-icons-left has-icons-right">
         <input
           class="input"
-          type="text"
+          type="password"
           id='password'
-          v-model='passwordInitial'
-          v-validate="passwordValidation">
+          v-model='passwordInitial'>
         <span class="icon is-small is-left">
           <i class="fa fa-key" aria-hidden="true"></i>
         </span>
@@ -22,7 +21,7 @@
       <div class="control has-icons-left has-icons-right">
         <input
           class="input"
-          type="text"
+          type="password"
           id='password'
           v-model='passwordConfirmation'>
         <span class="icon is-small is-left">

@@ -3,9 +3,11 @@ import Draggable from 'vuedraggable'
 
 export default {
   name: 'instruments-field',
+
   components: {
     Draggable
   },
+
   props: {
     keyOptions: {
       required: true

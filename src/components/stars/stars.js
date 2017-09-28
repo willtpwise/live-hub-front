@@ -1,10 +1,6 @@
 export default {
   name: 'stars',
-  props: {
-    strength: {
-      required: true
-    }
-  },
+  props: ['strength'],
   computed: {
     label () {
       return 'Ranked ' + this.strength + ' out of 5'

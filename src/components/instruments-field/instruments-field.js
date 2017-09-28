@@ -21,7 +21,7 @@ export default {
     add () {
       this.instruments.push({
         type: '',
-        val: ''
+        val: 0
       })
     },
     remove (index) {

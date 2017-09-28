@@ -7,8 +7,8 @@
         <div class="container">
           <div class="columns">
             <div class="column is-4">
-              <figure class="user-display">
-                <img :src='user.display[0].src' :alt='user.first_name + " " + user.last_name'>
+              <figure>
+                <img :src="backEndUri(user.display)" :alt="user.first_name + ' ' + user.last_name">
               </figure>
             </div>
             <div class="column user-intro">
@@ -28,25 +28,25 @@
     <section class="section user-main">
       <div class="container">
         <div class="columns">
-          <aside class="column is-4">
+          <aside class="column is-4" v-if='user.meta'>
 
-            <div class="user-instruments">
+            <div class="user-instruments" v-if='user.meta.instruments.length > 0'>
               <user-details
                 heading="Instruments"
-                :details='user.instruments'
+                :details='user.meta.instruments'
                 default-icon="fa-music"></user-details>
             </div>
 
-            <div class="user-details">
+            <div class="user-contact" v-if='user.meta.contact.length > 0'>
               <user-details
                 heading="Contact"
-                :details='user.details.contact'></user-details>
+                :details='user.meta.contact'></user-details>
             </div>
 
-            <div class="user-details">
+            <div class="user-social" v-if='user.meta.social.length > 0'>
               <user-details
                 heading="Connect"
-                :details='user.details.social'></user-details>
+                :details='user.meta.social'></user-details>
             </div>
 
           </aside>

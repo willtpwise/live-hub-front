@@ -6,7 +6,7 @@
       <h1 class="title is-1">My account</h1>
     </header>
     <section class="section">
-      <form>
+      <form @submit="submitForm($event)">
         <fieldset>
           <legend class="title is-2">General</legend>
           <div class="columns">
@@ -47,6 +47,44 @@
               </div>
             </div>
           </div>
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label" for='first_name'>First name *</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input
+                    class="input"
+                    type="text"
+                    name="first_name"
+                    id='first_name'
+                    v-model='user.first_name'
+                    v-validate="'required'"
+                    required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label" for='last_name'>Nick name *</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input
+                    class="input"
+                    type="text"
+                    name="nick_name"
+                    id='nick_name'
+                    v-model='user.nick_name'
+                    v-validate="'required'"
+                    required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="field">
             <label class="label" for='email'>Email address *</label>
             <div class="control has-icons-left has-icons-right">
@@ -69,18 +107,23 @@
         </fieldset>
 
         <fieldset>
+          <legend class="title is-2">Profile pic</legend>
+          <display-pic-field @fileChange="setFilePath($event)"></display-pic-field>
+        </fieldset>
+
+        <fieldset v-if="user.meta">
           <legend class="title is-2">Contact</legend>
-          <details-field :key-options="['Website', 'Phone', 'Email']" :details="user.details.contact"></details-field>
+          <details-field :key-options="['Website', 'Phone', 'Email']" :details="user.meta.contact"></details-field>
         </fieldset>
 
-        <fieldset>
+        <fieldset v-if="user.meta">
           <legend class="title is-2">Social</legend>
-          <details-field :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'Other']" :details="user.details.social"></details-field>
+          <details-field :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'Other']" :details="user.meta.social"></details-field>
         </fieldset>
 
-        <fieldset>
+        <fieldset v-if="user.meta">
           <legend class="title is-2">Instruments</legend>
-          <instruments-field :instruments="user.instruments"></instruments-field>
+          <instruments-field :instruments="user.meta.instruments"></instruments-field>
         </fieldset>
 
         <fieldset>
@@ -128,7 +171,11 @@
         </fieldset>
 
         <div class="field has-text-right">
-          Changes are saved automatically.
+          <button
+            type="submit"
+            role="submit"
+            aria-label="Click to save your changes"
+            class="button is-primary">Save Changes</button>
         </div>
       </form>
     </section>
