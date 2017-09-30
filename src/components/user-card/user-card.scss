@@ -1,10 +1,16 @@
 .user-card {
-  .user-card-details {
-    margin-top: 1em;
-  }
+
   .user-card-instruments {
-    .tag {
-      margin-bottom: 0;
+    .tag,
+    .icon {
+      margin: 0 8px 8px 0;
+    }
+  }
+
+  .user-card-display {
+    .image {
+      border-radius: 50%;
+      overflow: hidden;
     }
   }
 }

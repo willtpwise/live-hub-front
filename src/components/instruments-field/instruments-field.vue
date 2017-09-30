@@ -14,8 +14,8 @@
         </p>
       </div>
     </div>
-    <draggable v-model="instruments">
-      <div v-for="(detail, index) in instruments" class="instruments-field-item">
+    <draggable v-model="details">
+      <div v-for="(detail, index) in details" class="instruments-field-item">
         <div class="columns is-mobile">
           <div class="column is-5">
             <div class="field">

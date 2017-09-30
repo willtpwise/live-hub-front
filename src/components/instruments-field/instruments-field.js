@@ -30,6 +30,9 @@ export default {
     duplicate (index) {
       let copy = Object.assign({}, this.instruments[index])
       this.instruments.splice(index, 0, copy)
+    },
+    parseInt (val) {
+      return parseInt(val)
     }
   },
 

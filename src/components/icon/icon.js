@@ -9,7 +9,8 @@ export default {
         website: 'fa-globe',
         linkedin: 'fa-linkedin',
         twitter: 'fa-twitter',
-        facebook: 'fa-facebook'
+        facebook: 'fa-facebook',
+        soundcloud: 'fa-soundcloud'
       }
     }
   },

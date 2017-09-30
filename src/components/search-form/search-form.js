@@ -11,7 +11,9 @@ export default {
         NT: 'nt',
         SA: 'sa',
         Anywhere: '*'
-      }
+      },
+      searchGeo: 'nsw',
+      searchQuery: ''
     }
   }
 }

@@ -29,10 +29,8 @@ export default {
     }
   },
   methods: {
-    setFilePath (e) {
-      this.user = Object.assign({}, this.user, {
-        profile_picture: e
-      })
+    setFilePath (file) {
+      this.user.display = file
     },
     submitForm (e) {
       e.preventDefault()

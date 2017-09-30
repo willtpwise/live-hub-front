@@ -1,23 +1,24 @@
 <style src="./profile.scss" lang='scss'></style>
 <script src="./profile.js"></script>
 <template>
-  <article class="user">
+  <div>
+    <article class="user" v-for='user in users'>
     <header class="hero is-primary user-header">
       <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column is-4">
-              <figure>
+              <figure class="user-display">
                 <img :src="backEndUri(user.display)" :alt="user.first_name + ' ' + user.last_name">
               </figure>
             </div>
             <div class="column user-intro">
               <div>
-                <h2 class="title is-2">
+                <h1 class="title is-2">
                   {{user.first_name}} {{user.last_name}}
-                </h2>
-                <p class="subtitle" v-if='user.nick_name'>
-                  <span title='Nickname'>{{user.nick_name}}</span>
+                </h1>
+                <p class="subtitle" v-if='user.status'>
+                  <span title='Status'>{{user.status}}</span>
                 </p>
               </div>
             </div>
@@ -52,11 +53,12 @@
           </aside>
 
           <main class="column">
-            <p v-html='this.$options.filters.nl2br(user.bio)'></p>
+            <p v-html='$options.filters.nl2br(user.bio)'></p>
           </main>
 
         </div>
       </div>
     </section>
   </article>
+  </div>
 </template>

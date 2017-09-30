@@ -8,7 +8,7 @@
     <div class="display-pic-field-form">
       <div class="display-pic-field-preview">
         <figure>
-          <img :src="src" alt="User profile picture" class="image">
+          <img :src="src" alt="User profile picture" class="image" @error="setDefault">
         </figure>
       </div>
       <div class="display-pic-field-input">
@@ -20,8 +20,8 @@
                 type="file"
                 name="profile-picture"
                 @change="upload"
-                v-validate="'mimes:image/*'"
-                accept="image/*"
+                v-validate="'mimes:image/jpeg,image/png,image/jpg,image/gif'"
+                accept="image/jpeg,image/png,image/jpg,image/gif"
                 aria-describedby="description-display-pic">
               <span class="file-cta" aria-hidden='true'>
                 <span class="file-icon">

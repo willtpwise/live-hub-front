@@ -8,7 +8,13 @@ export default {
   data () {
     return {
       error: '',
-      src: this.file || defaultImage
+      default: defaultImage,
+      src: defaultImage
+    }
+  },
+  watch: {
+    file () {
+      this.src = BackEndURI(this.file)
     }
   },
   methods: {
@@ -26,11 +32,7 @@ export default {
         formData.append('upload', file, file.name)
 
         // Send the payload
-        axios.post('file/create/', formData, {
-          headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('LiveHUB')
-          }
-        })
+        axios.post('file/create/', formData)
         .then((response) => {
           this.error = ''
           this.src = BackEndURI(response.data.body)
@@ -42,6 +44,9 @@ export default {
       } else {
         this.error = "Looks like that file isn't an image. Your profile picture needs to be an image"
       }
+    },
+    setDefault () {
+      this.src = this.default
     }
   }
 }

@@ -1,14 +1,18 @@
 <style src='./home.scss' lang='scss'></style>
 <script src='./home.js'></script>
 <template>
-  <div>
-    <section class="section is-medium">
+  <article class="home">
+    <div class="section is-medium">
       <div class="container">
-        <h1 class="title is-1 has-text-centered">
-          Search for artists near you
-        </h1>
-        <search-form></search-form>
+        <header>
+          <h1 class="title is-1 has-text-centered">
+            Search for artists near you
+          </h1>
+        </header>
+        <section>
+          <search-form></search-form>
+        </section>
       </div>
-    </section>
-  </div>
+    </div>
+  </article>
 </template>

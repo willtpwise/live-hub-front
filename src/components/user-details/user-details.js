@@ -37,6 +37,9 @@ export default {
       if (!isNaN(val) && val <= 5) {
         return 'ranking'
       }
+    },
+    intval (val) {
+      return parseInt(val)
     }
   }
 }

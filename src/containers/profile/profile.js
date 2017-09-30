@@ -6,14 +6,14 @@ import { mapState } from 'vuex'
 export default {
   name: 'profile',
   computed: mapState([
-    'user'
+    'users'
   ]),
   components: {
     Stars,
     UserDetails
   },
   mounted: function () {
-    this.$store.dispatch('getUser', {
+    this.$store.dispatch('getUsers', {
       id: this.$route.params.id
     })
   },
@@ -24,7 +24,7 @@ export default {
   },
   filters: {
     nl2br (text) {
-      return text.replace(/\n/g, '<br>')
+      return text ? text.replace(/\n/g, '<br>') : ''
     }
   }
 }

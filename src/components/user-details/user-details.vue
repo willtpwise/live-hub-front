@@ -15,7 +15,7 @@
           <div class="column is-6">
             <stars
               v-if="displayType(detail.val) === 'ranking'"
-              :strength="detail.val"></stars>
+              :strength="intval(detail.val)"></stars>
             <div
               v-else
               v-html="autoLink(detail.val)"></div>

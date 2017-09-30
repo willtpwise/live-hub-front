@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    user: {}
+    user: false,
+    users: false
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    setUsers (state, payload) {
+      state.users = payload
     }
   },
   actions: {
@@ -20,10 +24,17 @@ const store = new Vuex.Store({
       axios.post('/users/update/', payload)
     },
     getUser (context, query) {
-      query = qs.stringify(query)
-      axios.post('/users/', query)
+      let payload = qs.stringify(query)
+      axios.post('/users/', payload)
       .then((response) => {
         context.commit('setUser', response.data.body[0])
+      })
+    },
+    getUsers (context, query) {
+      let payload = qs.stringify(query)
+      axios.post('/users/', payload)
+      .then((response) => {
+        context.commit('setUsers', response.data.body)
       })
     }
   }

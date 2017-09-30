@@ -5,9 +5,9 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="http://bulma.io">
+          <router-link to="/" class="navbar-item">
             <img src="http://placehold.it/112x28" alt="." width="112" height="28">
-          </a>
+          </router-link>
         </div>
         <button class="button navbar-burger">
           <span></span>
@@ -21,11 +21,25 @@
           </div>
 
           <div class="navbar-end">
-            <router-link to='/app/signup' class="navbar-item">
+            <div class="header-profile navbar-item has-dropdown is-hoverable" v-if='user'>
+              <router-link :to='user.id | profileLink' title="Visit my profile" class="navbar-link">
+                <figure class="icon header-profile-display">
+                  <img @error="setDefault" :src="display" :alt="user.first_name" class="image is-24x24">
+                </figure>
+                {{user.first_name}}
+              </router-link>
+              <div class="navbar-dropdown">
+                <logout-link class="navbar-item"></logout-link>
+                <router-link to='/app/myaccount' class="navbar-item">
+                  Myaccount
+                </router-link>
+              </div>
+            </div>
+            <router-link v-if='!user' to='/app/signup' class="navbar-item">
               Signup
             </router-link>
-            <router-link to='/app/myaccount' class="navbar-item">
-              Myaccount
+            <router-link v-if='!user' to='/app/login' class="navbar-item">
+              Login
             </router-link>
           </div>
         </div>
