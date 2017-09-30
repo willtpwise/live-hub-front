@@ -83,13 +83,5 @@
         </section>
       </div>
     </div>
-
-    <div class="section" v-if='error'>
-      <div class="container">
-        <div class="notification is-warning">
-          {{error}}
-        </div>
-      </div>
-    </div>
   </article>
 </template>

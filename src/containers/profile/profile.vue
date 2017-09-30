@@ -52,7 +52,7 @@
           </aside>
 
           <main class="column">
-            {{user.bio}}
+            <p v-html='this.$options.filters.nl2br(user.bio)'></p>
           </main>
 
         </div>

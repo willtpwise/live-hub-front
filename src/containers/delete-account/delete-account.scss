@@ -1,0 +1,7 @@
+.delete-account {
+  .card-footer-item {
+    &[disabled] {
+      color: #ddd;
+    }
+  }
+}

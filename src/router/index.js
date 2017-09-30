@@ -6,6 +6,7 @@ Vue.use(Router)
 import home from 'containers/home/home.vue'
 import signup from 'containers/signup/signup.vue'
 import myaccount from 'containers/myaccount/myaccount.vue'
+import deleteAccount from 'containers/delete-account/delete-account.vue'
 import login from 'containers/login/login.vue'
 import resetPassword from 'containers/reset-password/reset-password.vue'
 import resetPasswordStage2 from 'containers/reset-password-stage-2/reset-password-stage-2.vue'
@@ -19,6 +20,7 @@ const routes = [
   { path: '/app/signup', name: 'signup', component: signup },
   { path: '/app/login', name: 'login', component: login },
   { path: '/app/myaccount', name: 'myaccount', component: myaccount },
+  { path: '/app/myaccount/delete', name: 'delete-account', component: deleteAccount },
   { path: '/app/login/reset-password', name: 'reset-password', component: resetPassword },
   { path: '/app/login/reset-password/stage-2', name: 'reset-password-stage-2', component: resetPasswordStage2 },
   { path: '/app/users', name: 'users', component: users },

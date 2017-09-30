@@ -1,10 +1,30 @@
 .display-pic-field {
-  .display-pic-field-image {
-    width: 128px;
-    height: 128px;
-    overflow: hidden;
-    img {
-      width: 100%;
+
+  .display-pic-field-form {
+    display: flex;
+
+    .display-pic-field-preview,
+    .display-pic-field-input {
+      margin: auto 0;
     }
+    .display-pic-field-input {
+      padding-left: 30px;
+    }
+    .display-pic-field-preview {
+      figure {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1em;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .notification {
+    margin-top: 20px;
   }
 }

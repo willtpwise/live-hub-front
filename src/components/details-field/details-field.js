@@ -23,7 +23,7 @@ export default {
     },
     add () {
       this.details.push({
-        type: '',
+        type: this.keyOptions[0],
         val: ''
       })
     },

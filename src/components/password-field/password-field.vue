@@ -9,7 +9,8 @@
           class="input"
           type="password"
           id='password'
-          v-model='passwordInitial'>
+          v-model='passwordInitial'
+          aria-describedby="description-password">
         <span class="icon is-small is-left">
           <i class="fa fa-key" aria-hidden="true"></i>
         </span>
@@ -23,14 +24,15 @@
           class="input"
           type="password"
           id='password'
-          v-model='passwordConfirmation'>
+          v-model='passwordConfirmation'
+          aria-describedby="description-password">
         <span class="icon is-small is-left">
           <i class="fa fa-key" aria-hidden="true"></i>
         </span>
       </div>
     </div>
 
-    <p class="help">
+    <p class="help" id="description-password">
       {{litteralRequirements}}
     </p>
   </div>

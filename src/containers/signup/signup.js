@@ -1,7 +1,8 @@
-import axios from 'axios'
 import PasswordField from 'components/password-field/password-field.vue'
-import setToken from 'utilities/set-token.js'
 import qs from 'qs'
+import axios from 'utilities/axios.js'
+import setToken from 'utilities/set-token.js'
+
 export default {
   name: 'signup',
   components: {
@@ -9,9 +10,13 @@ export default {
   },
   data () {
     return {
-      signupMethod: 'social',
-      user: {},
-      error: ''
+      user: {
+        first_name: 'te1293st',
+        last_name: 'test',
+        email: 'test@rtss.com',
+        password: 'asd'
+      },
+      signupMethod: 'social'
     }
   },
   methods: {
@@ -27,15 +32,16 @@ export default {
       this.submit()
     },
     submit () {
-      let user = qs.stringify(this.user)
-      axios.post('user/create/', user)
+      // Remove any old tokens
+      localStorage.removeItem('LiveHUB')
+
+      // Create the user
+      let payload = qs.stringify(this.user)
+      axios.post('/users/create/', payload)
       .then((response) => {
+        // Load the my account page
         setToken(response.data.token)
-        this.$router.push('/app/myaccount')
-      })
-      .catch((e) => {
-        console.error(e)
-        this.error = 'An error occured when we tried to make your account. Try again in a few moments.'
+        location.href = '/app/myaccount?new=1'
       })
     }
   }

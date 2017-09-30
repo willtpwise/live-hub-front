@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'utilities/axios'
 import defaultImage from './profile-pic-default.png'
 import BackEndURI from 'utilities/back-end-uri.js'
 
@@ -35,7 +35,6 @@ export default {
           this.error = ''
           this.src = BackEndURI(response.data.body)
           this.$emit('fileChange', response.data.body)
-          // TO DO: Store the new token
         })
         .catch((e) => {
           this.error = "A problem occured when uploading your file. Try again in a few moments"

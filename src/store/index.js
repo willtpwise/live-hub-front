@@ -18,17 +18,12 @@ const store = new Vuex.Store({
     setUser (context, payload) {
       payload = qs.stringify(payload)
       axios.post('/users/update/', payload)
-      .then((response) => {
-        context.commit('setUser', response.data.body[0])
-        console.log(response)
-      })
     },
     getUser (context, query) {
       query = qs.stringify(query)
       axios.post('/users/', query)
       .then((response) => {
         context.commit('setUser', response.data.body[0])
-        console.log(response)
       })
     }
   }

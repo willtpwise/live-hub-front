@@ -13,7 +13,7 @@
             <div class="column">
               <div class="field">
                 <label class="label" for='first_name'>First name *</label>
-                <div class="control has-icons-left has-icons-right">
+                <div class="control has-icons-left">
                   <input
                     class="input"
                     type="text"
@@ -23,7 +23,7 @@
                     v-validate="'required'"
                     required>
                   <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
+                    <i aria-hidden="true" class="fa fa-user"></i>
                   </span>
                 </div>
               </div>
@@ -31,7 +31,7 @@
             <div class="column">
               <div class="field">
                 <label class="label" for='last_name'>Last name *</label>
-                <div class="control has-icons-left has-icons-right">
+                <div class="control has-icons-left">
                   <input
                     class="input"
                     type="text"
@@ -41,45 +41,7 @@
                     v-validate="'required'"
                     required>
                   <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label class="label" for='first_name'>First name *</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input
-                    class="input"
-                    type="text"
-                    name="first_name"
-                    id='first_name'
-                    v-model='user.first_name'
-                    v-validate="'required'"
-                    required>
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label" for='last_name'>Nick name *</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input
-                    class="input"
-                    type="text"
-                    name="nick_name"
-                    id='nick_name'
-                    v-model='user.nick_name'
-                    v-validate="'required'"
-                    required>
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
+                    <i aria-hidden="true" class="fa fa-user"></i>
                   </span>
                 </div>
               </div>
@@ -87,7 +49,7 @@
           </div>
           <div class="field">
             <label class="label" for='email'>Email address *</label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left">
               <input
                 class="input"
                 type="email"
@@ -97,17 +59,54 @@
                 v-validate="'required|email'"
                 required>
               <span class="icon is-small is-left">
-                <i class="fa fa-envelope"></i>
+                <i aria-hidden="true" class="fa fa-envelope"></i>
               </span>
             </div>
-            <p class="help">
-              You'll need your email address to sign in later.
-            </p>
           </div>
         </fieldset>
-
         <fieldset>
-          <legend class="title is-2">Profile pic</legend>
+          <legend class="title is-2">
+            Profile
+          </legend>
+          <div class="field">
+            <label class="label" for='status'>Status: Tell us what you're up to</label>
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="text"
+                name="status"
+                id='status'
+                v-model='user.status'
+                v-validate="'max:250'"
+                maxlength="250"
+                aria-describedby="description-status">
+              <span class="icon is-small is-left">
+                <i aria-hidden="true" class="fa fa-bullhorn"></i>
+              </span>
+            </div>
+            <p class="help" id="description-status">
+              E.g. Getting ready for a gig in Sydney!
+            </p>
+          </div>
+
+          <div class="field">
+            <label class="label" for='bio'>About {{user.first_name}}</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                type="text"
+                id="bio"
+                name="bio"
+                v-model="user.bio"
+                v-validate="'max:1000'"
+                maxlength="1000"
+                aria-describedby="description-bio">
+              </textarea>
+            </div>
+            <p class="help" id="description-bio">
+              Tell other users about you, what you're working on and what you're passionate about.
+            </p>
+          </div>
           <display-pic-field @fileChange="setFilePath($event)"></display-pic-field>
         </fieldset>
 
@@ -142,40 +141,17 @@
           <password-field :password='user.password'></password-field>
         </fieldset>
 
-        <fieldset>
-          <legend class="title is-2">Danger zone</legend>
-          <div class="field">
-            <label class="label" for='confirmDeleteAccount'>Type 'delete' to permanently delete your account</label>
-            <div class="control has-icons-left has-icons-right">
-              <input
-                class="input"
-                type="text"
-                id='confirmDeleteAccount'
-                v-model='confirmDeleteAccount'>
-              <span class="icon is-small is-left">
-                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-              </span>
-            </div>
+        <div class="columns">
+          <div class="column">
+            <router-link to="/app/myaccount/delete">Delete account</router-link>
           </div>
-          <div class="field">
+          <div class="column has-text-right">
             <button
-              type="button"
-              class="button is-black"
-              @click="deleteAccount()"
-              :disabled="!canDeleteAccount">
-              Delete my account</button>
-            <p class="help">
-              This is permanent.
-            </p>
+              type="submit"
+              role="submit"
+              aria-label="Click to save your changes"
+              class="button is-primary">Save Changes</button>
           </div>
-        </fieldset>
-
-        <div class="field has-text-right">
-          <button
-            type="submit"
-            role="submit"
-            aria-label="Click to save your changes"
-            class="button is-primary">Save Changes</button>
         </div>
       </form>
     </section>

@@ -10,6 +10,9 @@
           </h1>
         </header>
         <section class="section login-methods container-small">
+          <div v-if='error' class="notification is-warning" aria-live='polite'>
+            {{error}}
+          </div>
           <div class="login-methods-social">
             <div class="login-button">
               <a class="button is-primary is-medium">
@@ -21,36 +24,47 @@
             <span>or</span>
           </div>
           <div class="login-methods-alt">
-            <form @submit="submitAlt">
+            <form @submit="manualLogin($event)">
               <div class="field">
                 <label class="label" for='email'>Email</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="email" name="email" id='email' :v-model='user.email'>
+                  <input
+                    class="input"
+                    type="email"
+                    name="email"
+                    v-validate="'email|required'"
+                    required
+                    id='email'
+                    v-model='manual.email'>
                   <span class="icon is-small is-left">
-                    <i class="fa fa-envelope"></i>
+                    <i aria-hidden="true" class="fa fa-envelope"></i>
                   </span>
                 </div>
               </div>
               <div class="field">
                 <label class="label" for='password'>Password</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input" type="password" name="password" id='password' :v-model='user.password'>
+                  <input
+                    class="input"
+                    type="password"
+                    name="password"
+                    id='password'
+                    v-validate="'required'"
+                    required
+                    v-model='manual.password'>
                   <span class="icon is-small is-left">
-                    <i class="fa fa-key"></i>
+                    <i aria-hidden="true" class="fa fa-key"></i>
                   </span>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column has-text-left">
-                  <p>
-                    <small><router-link to="/app/login/reset-password">I forgot my password</router-link></small>
+                  <p class="help">
+                    <router-link to="/app/login/reset-password">I forgot my password</router-link>
                   </p>
                 </div>
-                <div class="column has-text-right">
-                  <div class="field">
-                    <button type="submit" class="button is-primary">Login</button>
-                  </div>
-                </div>
+              </div>
+              <div class="field has-text-right">
+                <button
+                  type="submit"
+                  role="submit"
+                  class="button is-primary">Login</button>
               </div>
             </form>
           </div>
