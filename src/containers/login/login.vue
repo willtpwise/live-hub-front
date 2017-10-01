@@ -15,9 +15,12 @@
           </div>
           <div class="login-methods-social">
             <div class="login-button">
-              <a class="button is-primary is-medium">
-                Login using Facebook
-              </a>
+              <fb-signin-button
+                :params="fbSignInParams"
+                @success="socialLogin"
+                @error="socialLoginError">
+                Sign in with Facebook
+              </fb-signin-button>
             </div>
           </div>
           <div class="login-methods-divider">

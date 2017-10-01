@@ -1,4 +1,5 @@
 import LogoutLink from 'components/logout-link/logout-link.vue'
+import SearchForm from 'components/search-form/search-form.vue'
 import BackEndURI from 'utilities/back-end-uri.js'
 import DefaultUser from 'assets/default-user.png'
 import { mapState } from 'vuex'
@@ -16,7 +17,8 @@ export default {
     }
   },
   components: {
-    LogoutLink
+    LogoutLink,
+    SearchForm
   },
   computed: mapState([
     'user'

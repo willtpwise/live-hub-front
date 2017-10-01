@@ -7,15 +7,26 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    user: false,
-    users: false
+    user: null,
+    users: null,
+    search: {
+      query: '',
+      geo: 'nsw'
+    }
   },
   mutations: {
     setUser (state, payload) {
       state.user = payload
     },
     setUsers (state, payload) {
-      state.users = payload
+      if (payload.length > 0) {
+        state.users = payload
+      } else {
+        state.users = false
+      }
+    },
+    setSearch (state, payload) {
+      state.search = payload
     }
   },
   actions: {
@@ -36,6 +47,14 @@ const store = new Vuex.Store({
       .then((response) => {
         context.commit('setUsers', response.data.body)
       })
+    },
+    getSearch (context, payload) {
+      payload = qs.parse(payload)
+      let search = {
+        query: payload.query,
+        geo: payload.query
+      }
+      context.commit('setSearch', search)
     }
   }
 })

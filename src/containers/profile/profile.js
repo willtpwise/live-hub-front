@@ -1,16 +1,45 @@
 import Stars from 'components/stars/stars.vue'
 import UserDetails from 'components/user-details/user-details.vue'
-import backEndUri from 'utilities/back-end-uri.js'
+import LoadingSpinner from 'components/loading-spinner/loading-spinner.vue'
+import defaultUser from 'assets/default-user.png'
+import backEndURI from 'utilities/back-end-uri.js'
 import { mapState } from 'vuex'
 
 export default {
   name: 'profile',
-  computed: mapState([
-    'users'
-  ]),
+  data () {
+    return {
+      user: null,
+    }
+  },
+  computed: {
+    display () {
+      return defaultUser
+    },
+    fullName () {
+      return this.user.first_name + ' ' + this.user.last_name
+    },
+    ... mapState([
+      'users'
+    ])
+  },
+  watch: {
+    users: {
+      handler: function (users) {
+        if (Array.isArray(users)) {
+          this.user = users[0]
+          this.user.display ? backEndURI(this.user.display) : ''
+        } else {
+          this.user = users
+        }
+      },
+      deep: true
+    }
+  },
   components: {
     Stars,
-    UserDetails
+    UserDetails,
+    LoadingSpinner
   },
   mounted: function () {
     this.$store.dispatch('getUsers', {
@@ -18,8 +47,8 @@ export default {
     })
   },
   methods: {
-    backEndUri (uri) {
-      return backEndUri(uri)
+    defaultDisplay () {
+      this.display = defaultUser
     }
   },
   filters: {

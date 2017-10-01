@@ -21,6 +21,9 @@
           </div>
 
           <div class="navbar-end">
+            <div class="navbar-item">
+              <search-form compact="true"></search-form>
+            </div>
             <div class="header-profile navbar-item has-dropdown is-hoverable" v-if='user'>
               <router-link :to='user.id | profileLink' title="Visit my profile" class="navbar-link">
                 <figure class="icon header-profile-display">
