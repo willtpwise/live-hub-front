@@ -10,13 +10,13 @@ export default {
   },
   data () {
     return {
-      user: {
-        first_name: 'te1293st',
-        last_name: 'test',
-        email: 'test@rtss.com',
-        password: 'asd'
-      },
-      signupMethod: 'social'
+      user: {},
+      error: '',
+      signupMethod: 'social',
+      fbSignInParams: {
+        scope: 'email',
+        return_scopes: true
+      }
     }
   },
   methods: {
@@ -39,10 +39,40 @@ export default {
       let payload = qs.stringify(this.user)
       axios.post('/users/create/', payload)
       .then((response) => {
-        // Load the my account page
-        setToken(response.data.token)
-        location.href = '/app/myaccount?new=1'
+        // Server error
+        if (!response.data.body) {
+          this.error = 'A problem occured while we were signing you up... Try again soon.'
+        }
+
+        if (response.data.body === 'duplicate') {
+          // Duplicate
+          this.error = 'It looks like you already have a LiveHUB account. <a href="/app/login">Login</a>'
+        } else if (response.data.body === 'success') {
+          // Load the my account page
+          setToken(response.data.token)
+          this.$router.push('/app/myaccount?new=1')
+        } else {
+          this.error = 'A problem occured while we were signing you up... Try again soon.'
+        }
       })
+    },
+    socialSignup (response) {
+      console.log(response)
+      FB.api('/me/?fields=email,first_name,last_name', (user) => {
+        FB.api(`/${user.id}/picture?height=300&width=300`, (picture) => {
+          this.user = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            facebook_id: user.id,
+            facebook_picture: picture.data.url
+          }
+          this.submit()
+        })
+      })
+    },
+    socialSignupError (error) {
+      console.log('OH NOES', error)
     }
   }
 }

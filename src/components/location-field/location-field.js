@@ -66,8 +66,12 @@ export default {
 
     // Load the Google Maps API
     // Calls window.initAutocomplete when ready
-    let script = document.createElement('script')
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCV4VGdGSk4A3V9SyDLCvjhfvcnVsiyktM&libraries=places&callback=initAutocomplete'
-    document.body.appendChild(script)
+    if (typeof google === 'undefined') {
+      let script = document.createElement('script')
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCV4VGdGSk4A3V9SyDLCvjhfvcnVsiyktM&libraries=places&callback=initAutocomplete'
+      document.body.appendChild(script)
+    } else {
+      this.initAutocomplete()
+    }
   }
 }

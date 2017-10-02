@@ -1,24 +1,31 @@
 import LogoutLink from 'components/logout-link/logout-link.vue'
 import SearchForm from 'components/search-form/search-form.vue'
-import BackEndURI from 'utilities/back-end-uri.js'
-import DefaultUser from 'assets/default-user.png'
+import UserPicture from 'components/user-picture/user-picture.vue'
+
 import { mapState } from 'vuex'
 export default {
   name: 'app-header',
   data () {
     return {
-      defaultUser: DefaultUser,
-      display: DefaultUser
+      menuOpen: false,
+      isSearching: false
     }
   },
   methods: {
-    setDefault () {
-      this.display = this.defaultUser
+    toggleMenu () {
+      this.menuOpen = this.menuOpen ? false : true
+    },
+    searchFocus () {
+      this.isSearching = true
+    },
+    searchBlur () {
+      this.isSearching = false
     }
   },
   components: {
     LogoutLink,
-    SearchForm
+    SearchForm,
+    UserPicture
   },
   computed: mapState([
     'user'
@@ -26,6 +33,14 @@ export default {
   mounted () {
     this.$store.dispatch('getUser', {
       id: 'current'
+    })
+
+    // Close the menu on page change, unless the user is searching
+    this.$router.beforeEach((to, from, next) => {
+      if (!this.isSearching) {
+        this.menuOpen = false
+      }
+      next()
     })
   },
   filters: {

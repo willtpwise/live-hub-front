@@ -40,6 +40,12 @@ export default {
   methods: {
     submit (e) {
       e.preventDefault()
+    },
+    onBlur (e) {
+      this.$emit('blur', e)
+    },
+    onFocus (e) {
+      this.$emit('focus', e)
     }
   }
 }

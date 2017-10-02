@@ -23,6 +23,8 @@
         <input
           class="input"
           type="search"
+          @focus="onFocus($event)"
+          @blur="onBlur($event)"
           v-model="search.query"
           :aria-label="searchFieldDescription"
           :placeholder="searchFieldDescription">

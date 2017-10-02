@@ -49,7 +49,11 @@ window.fillInAddress = () => {
 }
 
 (function () {
-  let script = document.createElement('script')
-  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCV4VGdGSk4A3V9SyDLCvjhfvcnVsiyktM&libraries=places&callback=initAutocomplete'
-  document.body.appendChild(script)
+  console.log(document.querySelector('#google-maps-api'))
+  if (!document.querySelector('#google-maps-api')) {
+    let script = document.createElement('script')
+    script.id = 'google-maps-api'
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCV4VGdGSk4A3V9SyDLCvjhfvcnVsiyktM&libraries=places&callback=initAutocomplete'
+    document.body.appendChild(script)
+  }
 })()

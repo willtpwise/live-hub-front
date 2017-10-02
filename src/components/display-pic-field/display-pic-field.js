@@ -1,20 +1,15 @@
 import axios from 'utilities/axios'
-import defaultImage from './profile-pic-default.png'
-import BackEndURI from 'utilities/back-end-uri.js'
+import UserPicture from 'components/user-picture/user-picture.vue'
 
 export default {
   name: 'display-pic-field',
   props: ['file'],
+  components: {
+    UserPicture
+  },
   data () {
     return {
-      error: '',
-      default: defaultImage,
-      src: defaultImage
-    }
-  },
-  watch: {
-    file () {
-      this.src = BackEndURI(this.file)
+      error: ''
     }
   },
   methods: {
@@ -35,7 +30,6 @@ export default {
         axios.post('file/create/', formData)
         .then((response) => {
           this.error = ''
-          this.src = BackEndURI(response.data.body)
           this.$emit('fileChange', response.data.body)
         })
         .catch((e) => {
@@ -44,9 +38,6 @@ export default {
       } else {
         this.error = "Looks like that file isn't an image. Your profile picture needs to be an image"
       }
-    },
-    setDefault () {
-      this.src = this.default
     }
-  }
+  },
 }

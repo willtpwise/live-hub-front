@@ -15,7 +15,13 @@
         <section>
           <div class="signup-social-method">
             <div class="signup-button">
-              <a class="button is-primary is-large">Facebook Signup</a>
+              <fb-signin-button
+                class="button button--fb"
+                :params="fbSignInParams"
+                @success="socialSignup"
+                @error="socialSignupError">
+                Signup with Facebook
+              </fb-signin-button>
             </div>
             <p class="signup-alt-method">
               <small>Don't have a Facebook account? <a @click="toggleSignupMethod">Signup the oldschool way</a>.</small>
@@ -83,5 +89,13 @@
         </section>
       </div>
     </div>
+
+    <div class="section">
+      <div class="container">
+        <div v-if='error' class="notification is-warning" aria-live='polite' v-html="error">
+        </div>
+      </div>
+    </div>
+
   </article>
 </template>

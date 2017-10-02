@@ -1,6 +1,7 @@
 import DetailsField from 'components/details-field/details-field.vue'
 import InstrumentsField from 'components/instruments-field/instruments-field.vue'
 import LocationField from 'components/location-field/location-field.vue'
+import LoadingSpinner from 'components/loading-spinner/loading-spinner.vue'
 import PasswordField from 'components/password-field/password-field.vue'
 import DisplayPicField from 'components/display-pic-field/display-pic-field.vue'
 import { mapState } from 'vuex'
@@ -12,6 +13,7 @@ export default {
     InstrumentsField,
     PasswordField,
     LocationField,
+    LoadingSpinner,
     DisplayPicField
   },
   computed: mapState([

@@ -5,7 +5,11 @@
     <header class="section">
       <h1 class="title is-1">My account</h1>
     </header>
-    <section class="section">
+    <p v-if="user === false">
+      User unknown
+    </p>
+    <loading-spinner v-else-if="user === null"></loading-spinner>
+    <section v-else class="section">
       <form @submit="submitForm($event)">
         <fieldset>
           <legend class="title is-2">General</legend>

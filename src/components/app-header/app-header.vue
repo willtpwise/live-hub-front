@@ -1,34 +1,37 @@
 <style src='./app-header.scss' lang='scss'></style>
 <script src='./app-header.js'></script>
 <template>
-  <header class="header">
+  <header class="header" :class="{'is-active': menuOpen}">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
           <router-link to="/" class="navbar-item">
             <img src="http://placehold.it/112x28" alt="." width="112" height="28">
           </router-link>
+          <button
+            role="button"
+            aria-label="Open / Close the menu"
+            @click="toggleMenu"
+            :class="{'is-active': menuOpen}"
+            class="button is-white navbar-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <button class="button navbar-burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
 
-        <div class="navbar-menu">
+        <div class="navbar-menu" :class="{'is-active': menuOpen}">
           <div class="navbar-start">
             <!-- navbar items -->
           </div>
 
           <div class="navbar-end">
             <div class="navbar-item">
-              <search-form compact="true"></search-form>
+              <search-form compact="true" @focus="searchFocus" @blur="searchBlur"></search-form>
             </div>
             <div class="header-profile navbar-item has-dropdown is-hoverable" v-if='user'>
               <router-link :to='user.id | profileLink' title="Visit my profile" class="navbar-link">
-                <figure class="icon header-profile-display">
-                  <img @error="setDefault" :src="display" :alt="user.first_name" class="image is-24x24">
-                </figure>
+                <user-picture :picture="user.display" class="image is-24x24 header-profile-display"></user-picture>
                 {{user.first_name}}
               </router-link>
               <div class="navbar-dropdown">

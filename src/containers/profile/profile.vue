@@ -12,12 +12,7 @@
           <div class="container">
             <div class="columns">
               <div class="column is-4">
-                <figure class="user-display">
-                  <img
-                    @error="defaultDisplay"
-                    :src="display"
-                    :alt="fullName">
-                </figure>
+                <user-picture class="user-display" :picture="user.display" :alt="fullName"></user-picture>
               </div>
               <div class="column user-intro">
                 <div>

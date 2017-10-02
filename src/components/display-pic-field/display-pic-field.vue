@@ -7,9 +7,7 @@
     </p>
     <div class="display-pic-field-form">
       <div class="display-pic-field-preview">
-        <figure>
-          <img :src="src" alt="User profile picture" class="image" @error="setDefault">
-        </figure>
+        <user-picture :picture="file"></user-picture>
       </div>
       <div class="display-pic-field-input">
         <div class="field">

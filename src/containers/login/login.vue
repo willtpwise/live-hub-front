@@ -16,6 +16,8 @@
           <div class="login-methods-social">
             <div class="login-button">
               <fb-signin-button
+                role="button"
+                class="button button--fb"
                 :params="fbSignInParams"
                 @success="socialLogin"
                 @error="socialLoginError">

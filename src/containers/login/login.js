@@ -12,7 +12,7 @@ export default {
       // The user data from the social API
       social: {},
       fbSignInParams: {
-        scope: 'email,user_likes',
+        scope: 'email',
         return_scopes: true
       }
     }
@@ -41,12 +41,13 @@ export default {
       this.login(this.manual)
     },
     socialLogin (response) {
+      let token = response.authResponse.accessToken
       FB.api('/me/?fields=email', (user) => {
         this.social = {
           email: user.email,
+          facebook_token: token,
           facebook_id: user.id
         }
-        console.log(this.social)
         this.login(this.social)
       })
     },
