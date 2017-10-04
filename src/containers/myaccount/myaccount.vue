@@ -111,7 +111,7 @@
               Tell other users about you, what you're working on and what you're passionate about.
             </p>
           </div>
-          <display-pic-field @fileChange="setFilePath($event)" :file="user.display"></display-pic-field>
+          <display-pic-field @fileChange="setFilePath($event)" :file="user.display['256x256']"></display-pic-field>
         </fieldset>
 
         <fieldset v-if="user.meta">

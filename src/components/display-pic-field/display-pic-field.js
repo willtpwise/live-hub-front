@@ -13,6 +13,12 @@ export default {
     }
   },
   methods: {
+    triggerUpload () {
+      let button = this.$el.querySelector('input[type="file"]')
+      if (button) {
+        button.click()
+      }
+    },
     upload () {
       let field = this.$el.querySelector('input[type="file"]')
       let file = field.files[0]

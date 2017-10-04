@@ -1,6 +1,11 @@
 import BackEndURI from 'utilities/back-end-uri.js'
+import UserPicture from 'components/user-picture/user-picture.vue'
+
 export default {
   name: 'user-card',
+  components: {
+    UserPicture
+  },
   props: [
     'user'
   ],
@@ -10,9 +15,6 @@ export default {
     },
     labelId () {
       return 'user-card-' + this.user.id
-    },
-    profilePic () {
-      return BackEndURI(this.user.display)
     },
     instrumentsLabel () {
       return `Instruments that ${this.user.first_name} plays`

@@ -1,5 +1,4 @@
 import DefaultImage from 'assets/default-user.png'
-import BackEndURI from 'utilities/back-end-uri.js'
 
 export default {
   name: 'user-picture',
@@ -13,7 +12,7 @@ export default {
   },
   watch: {
     picture () {
-      this.src = BackEndURI(this.picture)
+      this.src = this.picture
     }
   },
   data () {
@@ -27,6 +26,6 @@ export default {
     }
   },
   mounted () {
-    this.src = BackEndURI(this.picture)
+    this.src = this.picture
   }
 }

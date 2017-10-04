@@ -31,7 +31,7 @@
             </div>
             <div class="header-profile navbar-item has-dropdown is-hoverable" v-if='user'>
               <router-link :to='user.id | profileLink' title="Visit my profile" class="navbar-link">
-                <user-picture :picture="user.display" class="image is-24x24 header-profile-display"></user-picture>
+                <user-picture :picture="user.display['48x48']" class="image is-24x24 header-profile-display"></user-picture>
                 {{user.first_name}}
               </router-link>
               <div class="navbar-dropdown">

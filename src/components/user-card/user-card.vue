@@ -4,9 +4,7 @@
   <article class="media user-card" :aria-labelledby="labelId">
     <figure class="user-card-display media-left">
       <router-link :to='profileUrl' :title="fullName">
-        <p class="image is-128x128">
-          <img :src='profilePic' :alt='fullName'>
-        </p>
+        <user-picture class="image is-128x128" :picture="user.display['256x256']" :alt="fullName"></user-picture>
       </router-link>
     </figure>
     <div class="media-content">

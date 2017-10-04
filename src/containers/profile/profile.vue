@@ -12,7 +12,7 @@
           <div class="container">
             <div class="columns">
               <div class="column is-4">
-                <user-picture class="user-display" :picture="user.display" :alt="fullName"></user-picture>
+                <user-picture class="user-display" :picture="user.display['600x600']" :alt="fullName"></user-picture>
               </div>
               <div class="column user-intro">
                 <div>

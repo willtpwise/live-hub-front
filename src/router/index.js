@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+// application containers
 import home from 'containers/home/home.vue'
 import signup from 'containers/signup/signup.vue'
 import myaccount from 'containers/myaccount/myaccount.vue'

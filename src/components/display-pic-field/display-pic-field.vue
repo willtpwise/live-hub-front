@@ -6,7 +6,7 @@
       Profile picture
     </p>
     <div class="display-pic-field-form">
-      <div class="display-pic-field-preview">
+      <div class="display-pic-field-preview" @click="triggerUpload">
         <user-picture :picture="file"></user-picture>
       </div>
       <div class="display-pic-field-input">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <p class="help" id="description-display-pic">
-      Your profile picture is public
+      Your profile picture is public. Suggested image size: 600x600 px
     </p>
     <div aria-live='polite' class="notification is-warning" v-if='error'>
       {{error}}

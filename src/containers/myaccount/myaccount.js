@@ -16,9 +16,11 @@ export default {
     LoadingSpinner,
     DisplayPicField
   },
-  computed: mapState([
-    'user'
-  ]),
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
   data () {
     return {
       confirmDeleteAccount: '',
@@ -28,6 +30,12 @@ export default {
   watch: {
     confirmDeleteAccount () {
       this.canDeleteAccount = this.confirmDeleteAccount.toLowerCase() === 'delete'
+    },
+    user: {
+      handler: function () {
+        console.log(this.user.display['300x300'])
+      },
+      deep: true
     }
   },
   methods: {
