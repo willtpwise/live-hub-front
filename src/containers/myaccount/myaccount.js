@@ -23,6 +23,8 @@ export default {
   },
   data () {
     return {
+      hasSaved: false,
+      isSaving: false,
       confirmDeleteAccount: '',
       canDeleteAccount: false
     }
@@ -30,12 +32,6 @@ export default {
   watch: {
     confirmDeleteAccount () {
       this.canDeleteAccount = this.confirmDeleteAccount.toLowerCase() === 'delete'
-    },
-    user: {
-      handler: function () {
-        console.log(this.user.display['300x300'])
-      },
-      deep: true
     }
   },
   methods: {
@@ -44,10 +40,21 @@ export default {
     },
     submitForm (e) {
       e.preventDefault()
+      this.isSaving = true
+      this.hasSaved = true
+      let handleSaveComplete = () => {
+        this.isSaving = false
+        document.removeEventListener('setUserComplete', handleSaveComplete);
+      }
+      document.addEventListener('setUserComplete', handleSaveComplete);
       this.submitUser()
     },
     submitUser () {
       this.$store.dispatch('setUser', this.user)
+    },
+    acceptAddress (user) {
+      console.log(user)
+      this.user = user
     }
   },
   mounted () {

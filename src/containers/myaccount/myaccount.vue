@@ -5,12 +5,12 @@
     <header class="section">
       <h1 class="title is-1">My account</h1>
     </header>
-    <p v-if="user === false">
-      User unknown
-    </p>
-    <loading-spinner v-else-if="user === null"></loading-spinner>
-    <section v-else class="section">
-      <form @submit="submitForm($event)">
+    <section class="section">
+      <p v-if="user === false">
+        User unknown
+      </p>
+      <loading-spinner v-else-if="user === null"></loading-spinner>
+      <form v-else @submit="submitForm($event)">
         <fieldset>
           <legend class="title is-2">General</legend>
           <div class="columns">
@@ -134,7 +134,9 @@
           <p class="subtitle">
             We'll use your location to help find other musicians near you.
           </p>
-          <location-field :place='user.geo'></location-field>
+          <location-field
+            :user="this.user"
+            @addressChange="acceptAddress($event)"></location-field>
         </fieldset>
 
         <fieldset>
@@ -154,7 +156,11 @@
               type="submit"
               role="submit"
               aria-label="Click to save your changes"
-              class="button is-primary">Save Changes</button>
+              class="button is-primary"
+              :disabled="isSaving">
+              <span v-if="isSaving">Saving...</span>
+              <span v-else>Save changes</span>
+            </button>
           </div>
         </div>
       </form>

@@ -33,6 +33,10 @@ const store = new Vuex.Store({
     setUser (context, payload) {
       payload = qs.stringify(payload)
       axios.post('/users/update/', payload)
+      .then((response) => {
+        let event = new CustomEvent('setUserComplete')
+        document.dispatchEvent(event)
+      })
     },
     getUser (context, query) {
       let payload = qs.stringify(query)

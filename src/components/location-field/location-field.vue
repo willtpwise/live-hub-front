@@ -5,7 +5,7 @@
     <div class="field">
       <label class="label" for="autocomplete">Address</label>
       <p class="control has-icons-left">
-        <input class="input" id="autocomplete" name="autocomplete" placeholder="Start typing your address..." type="text">
+        <input class="input" id="autocomplete" name="autocomplete" placeholder="Start typing your address..." type="text" v-model="address">
         <span class="icon is-small is-left">
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>

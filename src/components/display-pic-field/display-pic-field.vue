@@ -18,15 +18,18 @@
                 type="file"
                 name="profile-picture"
                 @change="upload"
+                :disabled="isSaving"
                 v-validate="'mimes:image/jpeg,image/png,image/jpg,image/gif'"
                 accept="image/jpeg,image/png,image/jpg,image/gif"
                 aria-describedby="description-display-pic">
               <span class="file-cta" aria-hidden='true'>
                 <span class="file-icon">
-                  <i aria-hidden="true" class="fa fa-upload"></i>
+                  <i v-if="isSaving" aria-hidden="true" class="fa fa-spinner fa-spin fa-3x fa-f"></i>
+                  <i v-else aria-hidden="true" class="fa fa-upload"></i>
                 </span>
                 <span class="file-label">
-                  Upload new
+                  <span v-if="isSaving">Uploading...</span>
+                  <span v-else>Upload new</span>
                 </span>
               </span>
             </label>

@@ -9,6 +9,7 @@ export default {
   },
   data () {
     return {
+      isSaving: false,
       error: ''
     }
   },
@@ -33,10 +34,13 @@ export default {
         formData.append('upload', file, file.name)
 
         // Send the payload
+        this.isSaving = true
         axios.post('file/create/', formData)
         .then((response) => {
           this.error = ''
           this.$emit('fileChange', response.data.body)
+          this.isSaving = false
+
         })
         .catch((e) => {
           this.error = "A problem occured when uploading your file. Try again in a few moments"

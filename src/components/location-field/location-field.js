@@ -3,7 +3,7 @@
 export default {
   name: 'location-field',
   props: {
-    place: {
+    user: {
       required: true
     }
   },
@@ -22,22 +22,58 @@ export default {
     }
   },
   computed: {
-    geo () {
-      return this.place
+    address () {
+      let addressSegments = [
+        'street_number',
+        'route',
+        'locality',
+        'country'
+      ]
+      let address = []
+      for (let segment in addressSegments) {
+        if (this.user[segment]) {
+          address.push(this.user[segment])
+        }
+      }
+      return address.join(', ')
     }
   },
   methods: {
     initAutocomplete () {
-      // Create the autocomplete object, restricting the search to geographical
-      // location types.
-      let field = this.$el.querySelector('[name="autocomplete"]')
-      this.autocomplete = new google.maps.places.Autocomplete(field, {types: ['geocode']})
+      this.getDefaultBounds ((bounds) => {
+        // Create the options object
+        let options = {
+          type: ['geocode']
+        }
+        if (bounds) {
+          options.bounds = bounds
+        }
 
-      // When the user selects an address from the dropdown, populate the address
-      // fields in the form.
-      this.autocomplete.addListener('place_changed', () => {
-        this.setGeo(this.autocomplete.getPlace())
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        let field = this.$el.querySelector('[name="autocomplete"]')
+        this.autocomplete = new google.maps.places.Autocomplete(field, options)
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        this.autocomplete.addListener('place_changed', () => {
+          this.setGeo(this.autocomplete.getPlace())
+        })
       })
+    },
+    getDefaultBounds (callback) {
+      // Attempt to localise the search to the user's location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          let defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-33.8902, 151.1759),
+            new google.maps.LatLng(-33.8474, 151.2631)
+          )
+          callback(defaultBounds)
+        })
+      } else {
+        callback()
+      }
     },
     setGeo (place) {
       // Get each component of the address from the place details
@@ -55,7 +91,10 @@ export default {
       address.lng = place.geometry.location.lng()
 
       // Set the location
-      this.geo = address
+      let user = Object.assign({}, this.user, address)
+
+      // Emit the change
+      this.$emit('addressChange', user)
     }
   },
   mounted () {
