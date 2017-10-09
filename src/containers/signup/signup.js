@@ -1,13 +1,17 @@
 import PasswordField from 'components/password-field/password-field.vue'
+import Notification from 'components/notification/notification.vue'
 import qs from 'qs'
 import axios from 'utilities/axios.js'
 import setToken from 'utilities/set-token.js'
 
 export default {
   name: 'signup',
+
   components: {
-    PasswordField
+    PasswordField,
+    Notification
   },
+
   data () {
     return {
       user: {},
@@ -19,18 +23,23 @@ export default {
       }
     }
   },
+
   methods: {
+
     acceptPassword (e) {
       this.user.password = e
     },
+
     toggleSignupMethod () {
       this.signupMethod = this.signupMethod === 'alt' ? 'social' : 'alt'
     },
+
     altSubmit (e) {
       e.preventDefault()
       // To Do: Validate form (or submission)
       this.submit()
     },
+
     submit () {
       // Remove any old tokens
       localStorage.removeItem('LiveHUB')
@@ -56,6 +65,7 @@ export default {
         }
       })
     },
+
     socialSignup (response) {
       console.log(response)
       FB.api('/me/?fields=email,first_name,last_name', (user) => {
@@ -71,6 +81,7 @@ export default {
         })
       })
     },
+
     socialSignupError (error) {
       console.log('OH NOES', error)
     }

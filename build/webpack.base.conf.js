@@ -53,7 +53,7 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(scss)|(css)$/,
+        test: /\.(scss)|(css)|(sass)$/,
         loader: 'baggage?{"../../assets/variables.scss":{}}'
       },
       {

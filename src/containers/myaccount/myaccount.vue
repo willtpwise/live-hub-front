@@ -5,12 +5,18 @@
     <header class="section">
       <h1 class="title is-1">My account</h1>
     </header>
-    <section class="section">
+    <section class="section" aria-label="Profile details">
       <p v-if="user === false">
         User unknown
       </p>
       <loading-spinner v-else-if="user === null"></loading-spinner>
       <form v-else @submit="submitForm($event)">
+        <notification
+          v-if="showNewUser"
+          type="info"
+          :heading="newUserHeading"
+          :body="newUserBody"></notification>
+
         <fieldset>
           <legend class="title is-2">General</legend>
           <div class="columns">
@@ -149,13 +155,12 @@
 
         <div class="columns">
           <div class="column">
-            <router-link to="/app/myaccount/delete">Delete account</router-link>
+            <router-link to="/app/myaccount/delete" class="has-text-danger">Delete account</router-link>
           </div>
           <div class="column has-text-right">
             <button
               type="submit"
               role="submit"
-              aria-label="Click to save your changes"
               class="button is-primary"
               :disabled="isSaving">
               <span v-if="isSaving">Saving...</span>

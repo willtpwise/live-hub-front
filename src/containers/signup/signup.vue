@@ -8,6 +8,11 @@
           <h1 class="title is-1 has-text-centered">
             Signup to LiveHub
           </h1>
+          <notification
+            v-if="error"
+            type="warning"
+            :body="error"
+            :dismissable="false"></notification>
           <p class="subtitle">
             Use your Facebook account to kickstart your LiveHUB profile.
           </p>
@@ -38,6 +43,10 @@
             <h1 class="title is-1 has-text-centered">
               Signup to LiveHub
             </h1>
+            <notification
+              v-if="error"
+              type="error"
+              :body="error"></notification>
             <p class="has-text-centered">
               Alternatively, <a @click="toggleSignupMethod">signup using your Facebook account</a>.
             </p>
@@ -87,13 +96,6 @@
             </div>
           </form>
         </section>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="container">
-        <div v-if='error' class="notification is-warning" aria-live='polite' v-html="error">
-        </div>
       </div>
     </div>
 

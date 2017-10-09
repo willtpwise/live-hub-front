@@ -1,0 +1,31 @@
+.recent-signups {
+  width: 100%;
+  .recent-signups-item {
+    display: flex;
+    width: 100%;
+    color: inherit;
+
+    &:not(:last-child) {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    &:focus, &:hover {
+      .recent-signups-display {
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .recent-signups-display {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+  }
+
+  .recent-signups-body {
+    padding-left: 10px;
+  }
+}

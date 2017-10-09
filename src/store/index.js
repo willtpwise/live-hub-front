@@ -14,6 +14,7 @@ const store = new Vuex.Store({
       geo: 'nsw'
     }
   },
+
   mutations: {
     setUser (state, payload) {
       state.user = payload
@@ -29,7 +30,9 @@ const store = new Vuex.Store({
       state.search = payload
     }
   },
+
   actions: {
+
     setUser (context, payload) {
       payload = qs.stringify(payload)
       axios.post('/users/update/', payload)
@@ -38,6 +41,7 @@ const store = new Vuex.Store({
         document.dispatchEvent(event)
       })
     },
+
     getUser (context, query) {
       let payload = qs.stringify(query)
       axios.post('/users/', payload)
@@ -45,6 +49,7 @@ const store = new Vuex.Store({
         context.commit('setUser', response.data.body[0])
       })
     },
+
     getUsers (context, query) {
       let payload = qs.stringify(query)
       axios.post('/users/', payload)
@@ -52,6 +57,7 @@ const store = new Vuex.Store({
         context.commit('setUsers', response.data.body)
       })
     },
+
     getSearch (context, payload) {
       payload = qs.parse(payload)
       let search = {
@@ -60,6 +66,7 @@ const store = new Vuex.Store({
       }
       context.commit('setSearch', search)
     }
+
   }
 })
 
