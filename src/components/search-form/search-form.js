@@ -6,14 +6,14 @@ export default {
   computed: {
     searchFieldDescription () {
       if (this.compact) {
-        return 'Search'
+        return 'Search artists'
       } else {
         return 'Search by name, band or instrument'
       }
     },
-    ... mapState([
-    'search'
-    ])
+    ... mapState({
+      search: state => state.search.search
+    })
   },
   data () {
     return {

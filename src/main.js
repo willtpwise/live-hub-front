@@ -23,5 +23,12 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  mounted () {
+    // Scroll top on route change
+    this.$router.beforeEach((to, from, next) => {
+      window.scrollTo(0, 0)
+      next()
+    })
+  }
 })

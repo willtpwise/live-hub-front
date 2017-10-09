@@ -31,10 +31,10 @@ export default {
 
       return description
     },
-    ...mapState([
-      'users',
-      'search'
-    ]),
+    ...mapState({
+      users: state => state.users.users,
+      search: state => state.search.search
+    }),
   },
   watch: {
     users: {
@@ -77,7 +77,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getUsers', {
+    this.$store.dispatch('users/getUsers', {
       limit: -1
     })
   }

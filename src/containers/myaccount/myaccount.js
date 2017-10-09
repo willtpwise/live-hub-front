@@ -21,9 +21,10 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'user'
-    ]),
+    ...mapState({
+      user: state => state.current.user
+    }),
+
     newUserHeading () {
       if (this.user && this.user.first_name) {
         return `Welcome to your LiveHUB account, ${this.user.first_name}!`
@@ -52,7 +53,6 @@ export default {
   },
 
   methods: {
-
     setFilePath (file) {
       this.user.display = file
     },
@@ -70,7 +70,7 @@ export default {
     },
 
     submitUser () {
-      this.$store.dispatch('setUser', this.user)
+      this.$store.dispatch('current/setUser', this.user)
     },
 
     acceptAddress (user) {
@@ -82,9 +82,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getUser', {
-      id: 'current'
-    })
+    this.$store.dispatch('current/getUser')
 
     if (this.$route.query.new) {
       this.toggleNewUser()

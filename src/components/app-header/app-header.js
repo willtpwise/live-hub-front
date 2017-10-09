@@ -5,12 +5,14 @@ import UserPicture from 'components/user-picture/user-picture.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'app-header',
+
   data () {
     return {
       menuOpen: false,
       isSearching: false
     }
   },
+
   methods: {
     toggleMenu () {
       this.menuOpen = this.menuOpen ? false : true
@@ -22,18 +24,19 @@ export default {
       this.isSearching = false
     }
   },
+
   components: {
     LogoutLink,
     SearchForm,
     UserPicture
   },
-  computed: mapState([
-    'user'
-  ]),
+
+  computed: mapState({
+    user: state => state.current.user
+  }),
+
   mounted () {
-    this.$store.dispatch('getUser', {
-      id: 'current'
-    })
+    this.$store.dispatch('current/getUser')
 
     // Close the menu on page change, unless the user is searching
     this.$router.beforeEach((to, from, next) => {
@@ -43,6 +46,7 @@ export default {
       next()
     })
   },
+
   filters: {
     profileLink (id) {
       return '/app/users/' + id

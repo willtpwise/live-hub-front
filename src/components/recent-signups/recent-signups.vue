@@ -5,8 +5,8 @@
     <h3 class="title is-3" id="recent-users-title">New Users</h3>
     <div class="recent-signups-feed">
 
-      <a
-        :href="user.id | profileLink"
+      <router-link
+        :to="user.id | profileLink"
         class="recent-signups-item"
         title="Read more"
         :aria-label="user.first_name | itemLabel"
@@ -19,7 +19,7 @@
           <h4 class="has-text-weight-semibold">{{user.first_name}} {{user.last_name}}</h4>
           <p>Joined: <time :datetime="user.created | dateATOM">{{user.created | dateFriendly}}</time></p>
         </div>
-      </a>
+      </router-link>
 
     </div>
   </div>

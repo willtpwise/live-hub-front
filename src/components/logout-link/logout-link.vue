@@ -4,5 +4,6 @@
   <a href="/"
     class="logout"
     @click="logout($event)"
-    aria-label="Logout and return to home">Logout</a>
+    aria-label="Logout and return to home"
+    title="Logout from LiveHUB">Logout</a>
 </template>

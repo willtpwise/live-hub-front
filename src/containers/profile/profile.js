@@ -7,30 +7,13 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'profile',
-  data () {
-    return {
-      user: null
-    }
-  },
   computed: {
     fullName () {
       return this.user.first_name + ' ' + this.user.last_name
     },
-    ... mapState([
-      'users'
-    ])
-  },
-  watch: {
-    users: {
-      handler: function (users) {
-        if (Array.isArray(users)) {
-          this.user = users[0]
-        } else {
-          this.user = users
-        }
-      },
-      deep: true
-    }
+    ...mapState({
+      user: state => state.profile.user
+    }),
   },
   components: {
     Stars,
@@ -38,8 +21,18 @@ export default {
     LoadingSpinner,
     UserPicture
   },
-  mounted: function () {
-    this.$store.dispatch('getUsers', {
+  watch: {
+    $route: {
+      handler: function () {
+        this.$store.dispatch('profile/getUser', {
+          id: this.$route.params.id
+        })
+      },
+      deep: true
+    }
+  },
+  mounted () {
+    this.$store.dispatch('profile/getUser', {
       id: this.$route.params.id
     })
   },

@@ -9,9 +9,9 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'users'
-    ])
+    ...mapState({
+      users: state => state.recent.users
+    })
   },
 
   filters: {
@@ -25,11 +25,14 @@ export default {
     },
     itemLabel (first_name) {
       return `Click to view the LiveHUB profile for ${first_name}`
+    },
+    profileLink (id) {
+      return `/app/users/${id}`
     }
   },
 
   mounted () {
-    this.$store.dispatch('getUsers', {
+    this.$store.dispatch('recent/getUsers', {
       limit: 3,
       order: {
         column: 'created',
