@@ -9,6 +9,7 @@
           class="input"
           type="password"
           id='password'
+          autocomplete="off"
           v-model='passwordInitial'
           aria-describedby="description-password">
         <span class="icon is-small is-left">
@@ -24,6 +25,7 @@
           class="input"
           type="password"
           id='password'
+          autocomplete="off"
           v-model='passwordConfirmation'
           aria-describedby="description-password">
         <span class="icon is-small is-left">
@@ -32,8 +34,25 @@
       </div>
     </div>
 
-    <p class="help" id="description-password">
-      {{litteralRequirements}}
-    </p>
+    <div class="password-field-validation content">
+      <div class="columns">
+        <div class="column password-field-validation-item">
+          <p>
+            <span class="icon">
+              <i class="fa fa-check-circle-o has-text-success" aria-hidden="true" v-if="validLength"></i>
+              <i class="fa fa-circle-o" aria-hidden="true" v-else></i>
+            </span>
+            Six or more characters
+          </p>
+          <p>
+            <span class="icon">
+              <i class="fa fa-check-circle-o  has-text-success" aria-hidden="true" v-if="passwordsMatch"></i>
+              <i class="fa fa-circle-o" aria-hidden="true" v-else></i>
+            </span>
+            Passwords match
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

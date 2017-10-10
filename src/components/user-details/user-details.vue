@@ -6,13 +6,13 @@
     <ul class="list-unstyled">
       <li v-for='detail in details'>
         <div class="columns is-mobile">
-          <div class="column is-6">
+          <div class="column is-5 user-details-type">
             <icon
               :search="detail.type"
               :default="defaultIcon"></icon>
             {{detail.type}}
           </div>
-          <div class="column is-6">
+          <div class="column is-7 user-details-value">
             <stars
               v-if="displayType(detail.val) === 'ranking'"
               :strength="intval(detail.val)"></stars>

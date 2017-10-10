@@ -12,18 +12,51 @@
 
         <section class="section">
           <form @submit="submit($event)" class="container-small">
+
+            <div
+              v-if="state === 'error'"
+              class="notification is-warning"
+              aria-live='polite'
+              aria-labelledby="error-title">
+              <p id="error-title">
+                <strong>Oops!</strong> An error occured when resetting your password. Shoot us an email if the problem continues.
+              </p>
+              <p>
+                <a href="mailto:info@livehub.com.au">info@livehub.com.au</a>
+              </p>
+            </div>
+
             <div class="field">
               <label class="label" for='password'>Password</label>
               <div class="control has-icons-left has-icons-right">
-                <input class="input" type="password" name="password" id='password' :v-model='user.password'>
+                <input
+                  class="input"
+                  type="password"
+                  name="password"
+                  id='password'
+                  autocomplete="off"
+                  v-validate="'min:6'"
+                  v-model='password'>
                 <span class="icon is-small is-left">
-                  <i class="fa fa-key"></i>
+                  <i class="fa fa-key" aria-hidden="true"></i>
                 </span>
               </div>
+              <p class="help">
+                Atleast six characters long.
+              </p>
             </div>
+
             <div class="field">
-              <button type="submit" class="button is-primary">Reset my password</button>
+              <button
+                role="button"
+                type="submit"
+                :disabled="loading || state === 'success'"
+                class="button is-primary">
+                <span v-if="loading">Working...</span>
+                <span v-else>Reset my password</span>
+              </button>
             </div>
+
           </form>
         </section>
       </div>

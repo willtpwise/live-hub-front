@@ -30,12 +30,16 @@ export default {
         'country'
       ]
       let address = []
-      for (let segment in addressSegments) {
+      addressSegments.forEach((segment) => {
         if (this.user[segment]) {
           address.push(this.user[segment])
         }
-      }
+      })
       return address.join(', ')
+    },
+
+    placeholder () {
+      return this.address || 'Start typing your city... '
     }
   },
   methods: {
@@ -65,9 +69,17 @@ export default {
       // Attempt to localise the search to the user's location
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
+
+          // Store the user's lat / lng
+          let user = Object.assign({}, this.user, {
+            lat: position.latitude,
+            lng: position.longtitude
+          })
+          this.$emit('addressChange', user)
+
+          // Set the default bounds
           let defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(-33.8902, 151.1759),
-            new google.maps.LatLng(-33.8474, 151.2631)
+            new google.maps.LatLng(position.latitude, position.longtitude)
           )
           callback(defaultBounds)
         })
@@ -77,7 +89,16 @@ export default {
     },
     setGeo (place) {
       // Get each component of the address from the place details
-      let address = {}
+      let address = {
+        street_number: '',
+        route: '',
+        locality: '',
+        administrative_area_level_1: '',
+        country: '',
+        postal_code: '',
+        lat: '',
+        lng: ''
+      }
       for (let i = 0; i < place.address_components.length; i++) {
         let addressType = place.address_components[i].types[0]
         if (this.componentForm[addressType]) {

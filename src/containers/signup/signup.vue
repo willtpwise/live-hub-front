@@ -23,9 +23,11 @@
               <fb-signin-button
                 class="button button--fb"
                 :params="fbSignInParams"
+                :disabled="loading"
                 @success="socialSignup"
                 @error="socialSignupError">
-                Signup with Facebook
+                <span v-if="loading">Working...</span>
+                <span v-else>Signup with Facebook</span>
               </fb-signin-button>
             </div>
             <p class="signup-alt-method">
@@ -92,7 +94,15 @@
             </div>
             <password-field @passwordChange="acceptPassword($event)"></password-field>
             <div class="field has-text-right">
-              <button type="submit" class="button is-primary">Create my account</button>
+              <button
+                role="button"
+                type="submit"
+                class="button is-primary"
+                aria-label="Click to submit and create your LiveHUB account"
+                :disabled="loading">
+                <span v-if="loading">Working...</span>
+                <span v-else>Create my account</span>
+              </button>
             </div>
           </form>
         </section>

@@ -39,4 +39,9 @@
   &:focus {
     background-color: darken($facebook, 10%);
   }
+
+  &[disabled] {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
 }

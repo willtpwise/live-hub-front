@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.(scss)|(css)|(sass)$/,
-        loader: 'baggage?{"../../assets/variables.scss":{}}'
+        loader: 'baggage-loader?{"../../assets/variables.scss":{}}'
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

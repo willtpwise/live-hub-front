@@ -80,5 +80,7 @@ export default {
     this.$store.dispatch('users/getUsers', {
       limit: -1
     })
+
+    this.$el.querySelector('input[type="search"]').focus()
   }
 }

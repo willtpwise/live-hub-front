@@ -40,7 +40,7 @@
                   :to='user.id | profileLink'
                   aria-label="Click to visit your public profile"
                   title="Visit my public profile"
-                  class="navbar-link navbar-user">
+                  class="navbar-link">
                   <user-picture :picture="user.display['48x48']" class="image is-24x24 header-profile-display"></user-picture>
                   {{user.first_name}}
                 </router-link>
@@ -55,10 +55,18 @@
                   </router-link>
                 </div>
               </div>
-              <router-link v-if='!user' to='/app/signup' class="navbar-item">
+              <router-link
+                v-if='!user'
+                to='/app/signup'
+                aria-label="Signup to your LiveHUB account"
+                class="navbar-item">
                 Signup
               </router-link>
-              <router-link v-if='!user' to='/app/login' class="navbar-item">
+              <router-link
+                v-if='!user'
+                to='/app/login'
+                aria-label="Login to your LiveHUB account"
+                class="navbar-item">
                 Login
               </router-link>
             </div>

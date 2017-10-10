@@ -10,7 +10,7 @@
     <div class="media-content">
       <div class="content">
         <h2 class="title is-3" :id="labelId">
-          <router-link :to='profileUrl'>
+          <router-link :to='profileUrl' tabindex="-1">
             {{fullName}}
           </router-link>
         </h2>

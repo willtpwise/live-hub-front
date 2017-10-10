@@ -14,11 +14,18 @@
         </p>
         <loading-spinner v-else-if="user === null"></loading-spinner>
         <form v-else @submit="submitForm($event)">
+
           <notification
-            v-if="showNewUser"
+            v-if="$route.query.new"
             type="info"
             :heading="newUserHeading"
             :body="newUserBody"></notification>
+
+          <notification
+            v-if="$route.query.reset"
+            type="info"
+            heading="Password reset"
+            :body="`Your password has been successfully reset, ${user.first_name}.`"></notification>
 
           <fieldset>
             <legend class="title is-2">General</legend>
@@ -125,12 +132,20 @@
 
           <fieldset v-if="user.meta">
             <legend class="title is-2">Contact</legend>
+            <p class="subtitle">
+              These contact details are displayed publicly.
+            </p>
             <details-field :key-options="['Website', 'Phone', 'Email']" :details="user.meta.contact"></details-field>
           </fieldset>
 
           <fieldset v-if="user.meta">
             <legend class="title is-2">Social</legend>
-            <details-field :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'Other']" :details="user.meta.social"></details-field>
+            <p class="subtitle">
+              Links to your social accounts.
+            </p>
+            <details-field
+              :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'Other']"
+              :details="user.meta.social"></details-field>
           </fieldset>
 
           <fieldset v-if="user.meta">
@@ -153,7 +168,9 @@
             <p class="subtitle">
               Leave this empty, unless you want to change your password.
             </p>
-            <password-field :password='user.password'></password-field>
+            <password-field
+              :password='user.password'
+              @passwordChange="acceptPassword($event)"></password-field>
           </fieldset>
 
           <div class="columns">
@@ -169,6 +186,15 @@
                 <span v-if="isSaving">Saving...</span>
                 <span v-else>Save changes</span>
               </button>
+              <p class="help"
+                v-if='hasSaved'
+                aria-live='polite'>
+                Changes saved
+                <router-link
+                  :to="`/app/users/${user.id}`"
+                  aria-label="View your public profile">
+                  view profile</router-link>.
+              </p>
             </div>
           </div>
         </form>

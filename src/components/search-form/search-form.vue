@@ -32,11 +32,6 @@
             <i class="fa fa-search" aria-hidden='true'></i>
           </span>
       </p>
-      <p class="control search-form-submit" v-if='!compact'>
-        <button class="button">
-          Search
-        </button>
-      </p>
     </div>
   </form>
 </template>

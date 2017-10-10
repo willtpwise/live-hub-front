@@ -37,7 +37,6 @@ export default {
   data () {
     return {
       lastSave: Date.now(),
-      showNewUser: false,
       hasSaved: false,
       isSaving: false,
       confirmDeleteAccount: '',
@@ -60,9 +59,9 @@ export default {
     submitForm (e) {
       e.preventDefault()
       this.isSaving = true
-      this.hasSaved = true
       let handleSaveComplete = () => {
         this.isSaving = false
+        this.hasSaved = true
         document.removeEventListener('setUserComplete', handleSaveComplete);
       }
       document.addEventListener('setUserComplete', handleSaveComplete);
@@ -74,18 +73,17 @@ export default {
     },
 
     acceptAddress (user) {
-      this.user = user
+      this.$store.commit('current/setUser', user)
     },
 
-    toggleNewUser () {
-      this.showNewUser = this.showNewUser ? false : true
-    }
+    acceptPassword (password) {
+      let user = Object.assign({}, this.user, {
+        password: password
+      })
+      this.$store.commit('current/setUser', user)
+    },
   },
   mounted () {
     this.$store.dispatch('current/getUser')
-
-    if (this.$route.query.new) {
-      this.toggleNewUser()
-    }
   }
 }

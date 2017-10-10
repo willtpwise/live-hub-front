@@ -2,4 +2,19 @@
   .users-results {
     margin-bottom: 2em;
   }
+
+  .list-item {
+    // display: inline-block;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .list-enter-active, .list-leave-active {
+    transition: all 0.3s ease;
+  }
+  .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    overflow: hidden;
+    transform: translateX(30px);
+  }
 }

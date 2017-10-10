@@ -1,4 +1,3 @@
-import MockUsers from 'store/mocks/mock-users.js'
 import StarRating from 'vue-star-rating'
 import Draggable from 'vuedraggable'
 

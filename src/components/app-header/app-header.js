@@ -40,9 +40,7 @@ export default {
 
     // Close the menu on page change, unless the user is searching
     this.$router.beforeEach((to, from, next) => {
-      if (!this.isSearching) {
-        this.menuOpen = false
-      }
+      this.menuOpen = false
       next()
     })
   },

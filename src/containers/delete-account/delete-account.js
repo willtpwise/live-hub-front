@@ -4,9 +4,9 @@ import qs from 'qs'
 
 export default {
   name: 'delete-account',
-  computed: mapState([
-    'user'
-  ]),
+  computed: mapState({
+    'user': state => state.current.user
+  }),
   data () {
     return {
       showModal: false,
@@ -57,8 +57,6 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('getUser', {
-      id: 'current'
-    })
+    this.$store.dispatch('current/getUser')
   }
 }

@@ -16,6 +16,7 @@ export default {
     return {
       user: {},
       error: '',
+      loading: false,
       signupMethod: 'social',
       fbSignInParams: {
         scope: 'email',
@@ -41,6 +42,8 @@ export default {
     },
 
     submit () {
+      this.loading = true
+
       // Remove any old tokens
       localStorage.removeItem('LiveHUB')
 
@@ -48,6 +51,8 @@ export default {
       let payload = qs.stringify(this.user)
       axios.post('/users/create/', payload)
       .then((response) => {
+        this.loading = false
+        
         // Server error
         if (!response.data.body) {
           this.error = 'A problem occured while we were signing you up... Try again soon.'
@@ -67,18 +72,28 @@ export default {
     },
 
     socialSignup (response) {
-      console.log(response)
+      this.loading = true
       FB.api('/me/?fields=email,first_name,last_name', (user) => {
-        FB.api(`/${user.id}/picture?height=300&width=300`, (picture) => {
-          this.user = {
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
-            facebook_id: user.id,
-            facebook_picture: picture.data.url
-          }
-          this.submit()
-        })
+        if (!user || user.error) {
+          this.loading = false
+          this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Signup is unavailable at this time.`
+        } else {
+          FB.api(`/${user.id}/picture?height=300&width=300`, (picture) => {
+            if (!picture || picture.error) {
+              this.loading = false
+              this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Signup is unavailable at this time.`
+            } else {
+              this.user = {
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                facebook_id: user.id,
+                facebook_picture: picture.data.url
+              }
+              this.submit()
+            }
+          })
+        }
       })
     },
 

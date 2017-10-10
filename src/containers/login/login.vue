@@ -10,18 +10,23 @@
           </h1>
         </header>
         <section class="section login-methods container-small">
-          <div v-if='error' class="notification is-warning" aria-live='polite'>
-            {{error}}
-          </div>
+          
+          <notification
+            type="warning"
+            v-if="error"
+            :body="error"></notification>
+
           <div class="login-methods-social">
             <div class="login-button">
               <fb-signin-button
                 role="button"
                 class="button button--fb"
                 :params="fbSignInParams"
+                :disabled="loading"
                 @success="socialLogin"
                 @error="socialLoginError">
-                Sign in with Facebook
+                <span v-if="loading">Signing in...</span>
+                <span v-else>Sign in with Facebook</span>
               </fb-signin-button>
             </div>
           </div>

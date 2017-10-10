@@ -159,7 +159,9 @@
     "test": "npm run unit && npm run e2e",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "component": "./bin/create-component/index.sh $1 components",
-    "container": "./bin/create-component/index.sh $1 containers"
+    "container": "./bin/create-component/index.sh $1 containers",
+    "deploy:dev": "aws --profile=livehub_dev s3 sync dist s3://livehub.com.au",
+    "deploy:prod": "aws --profile=livehub_prod s3 sync dist s3://livehub.com.au"
   },
   "version": "1.0.0"
 }

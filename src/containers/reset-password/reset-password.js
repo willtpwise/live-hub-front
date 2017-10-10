@@ -1,23 +1,32 @@
+import axios from 'utilities/axios.js'
+import qs from 'qs'
+
 export default {
   name: 'reset-password',
   data () {
     return {
-      user: {},
-      emailSent: false
-    }
-  },
-  watch: {
-    emailSent () {
-      if (this.emailSent) {
-        this.$router.push('/app/login?passwordreset=1')
-      }
+      loading: false,
+      state: false,
+      email: ''
     }
   },
   methods: {
     resetPassword (e) {
       e.preventDefault()
-      // TO DO: Backend connection
-      this.emailSent = true
+      this.loading = true
+      let payload = {
+        'email': this.email
+      }
+      console.log(payload)
+      axios.post('/password-reset/', qs.stringify(payload))
+      .then((response) => {
+        this.loading = false
+        if (response.data.body === 'success') {
+          this.state = 'success'
+        } else {
+          this.state = 'error'
+        }
+      })
     }
   }
 }

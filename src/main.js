@@ -27,7 +27,10 @@ new Vue({
   mounted () {
     // Scroll top on route change
     this.$router.beforeEach((to, from, next) => {
-      window.scrollTo(0, 0)
+      let isSearchPage = to.name === 'users' && from.name === 'users'
+      if (!isSearchPage) {
+        window.scrollTo(0, 0)
+      }
       next()
     })
   }

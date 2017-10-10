@@ -1,4 +1,3 @@
-import MockUsers from 'store/mocks/mock-users.js'
 import Draggable from 'vuedraggable'
 
 export default {

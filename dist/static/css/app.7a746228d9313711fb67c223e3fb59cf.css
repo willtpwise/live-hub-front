@@ -10161,6 +10161,7 @@ body {
   margin-right: 8px;
   border-radius: 50%;
   overflow: hidden;
+  float: left;
 }
 
 .search-form .search-form-geo select {
@@ -10169,15 +10170,59 @@ body {
 }
 
 .footer {
-  padding: 3rem 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .footer .footer-brand {
+    margin: auto 0;
     font-family: stag-bold;
-    font-size: 100px;
+    font-size: 120px;
     line-height: 0.8;
 }
 .footer .footer-brand span {
       display: block;
+}
+.footer .column {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+.footer .footer-subtle {
+    width: 100%;
+    text-align: right;
+    margin-top: auto;
+}
+
+.subscribe {
+  width: 100%;
+}
+
+.recent-signups {
+  width: 100%;
+}
+.recent-signups .recent-signups-item {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    color: inherit;
+}
+.recent-signups .recent-signups-item:not(:last-child) {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+}
+.recent-signups .recent-signups-item:focus .recent-signups-display, .recent-signups .recent-signups-item:hover .recent-signups-display {
+      transform: translateY(-2px);
+}
+.recent-signups .recent-signups-display {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+}
+.recent-signups .recent-signups-body {
+    padding-left: 10px;
 }
 
 .signup .signup-button {
@@ -10228,15 +10273,22 @@ form > fieldset {
 .display-pic-field .display-pic-field-form .display-pic-field-input {
     padding-left: 30px;
 }
+.display-pic-field .display-pic-field-form .display-pic-field-preview {
+    transition: all 0.5s ease;
+}
 .display-pic-field .display-pic-field-form .display-pic-field-preview figure {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 1em;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1em;
 }
 .display-pic-field .display-pic-field-form .display-pic-field-preview figure img {
-      width: 100%;
+        width: 100%;
+}
+.display-pic-field .display-pic-field-form .display-pic-field-preview:hover {
+      opacity: 0.9;
+      cursor: pointer;
 }
 .display-pic-field .notification {
   margin-top: 20px;
@@ -10309,4 +10361,4 @@ form > fieldset {
   margin-bottom: 2em;
 }
 
-/*# sourceMappingURL=app.f3f8c850f22d16527e850bc329c3ba21.css.map*/
+/*# sourceMappingURL=app.7a746228d9313711fb67c223e3fb59cf.css.map*/
