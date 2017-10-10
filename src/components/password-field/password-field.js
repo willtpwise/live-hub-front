@@ -1,5 +1,6 @@
 export default {
   name: 'password-field',
+
   data () {
     return {
       passwordInitial: '',
@@ -9,6 +10,7 @@ export default {
       litteralRequirements: 'Six character or more'
     }
   },
+
   watch: {
     passwordsMatch () {
       if (validLength) {
@@ -23,6 +25,7 @@ export default {
       this.passwordsMatch = this.checkPasswordsMatch()
     }
   },
+
   methods: {
     checkPasswordsMatch () {
       if (this.passwordInitial === '') {

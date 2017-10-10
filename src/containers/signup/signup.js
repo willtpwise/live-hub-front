@@ -52,7 +52,7 @@ export default {
       axios.post('/users/create/', payload)
       .then((response) => {
         this.loading = false
-        
+
         // Server error
         if (!response.data.body) {
           this.error = 'A problem occured while we were signing you up... Try again soon.'
@@ -78,7 +78,7 @@ export default {
           this.loading = false
           this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Signup is unavailable at this time.`
         } else {
-          FB.api(`/${user.id}/picture?height=300&width=300`, (picture) => {
+          FB.api(`/${user.id}/picture?height=600&width=600`, (picture) => {
             if (!picture || picture.error) {
               this.loading = false
               this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Signup is unavailable at this time.`

@@ -27,7 +27,9 @@ export default {
         'street_number',
         'route',
         'locality',
-        'country'
+        'administrative_area_level_1',
+        'country',
+        'postal_code'
       ]
       let address = []
       addressSegments.forEach((segment) => {
