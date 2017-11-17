@@ -1,8 +1,14 @@
 import axios from 'utilities/axios.js'
 import qs from 'qs'
+import PasswordField from 'components/password-field/password-field.vue'
 
 export default {
   name: 'reset-password-stage-2',
+
+  components: {
+    PasswordField
+  },
+
   data () {
     return {
       password: '',
@@ -10,6 +16,7 @@ export default {
       state: false
     }
   },
+
   methods: {
     submit (e) {
       e.preventDefault()
@@ -26,6 +33,10 @@ export default {
           this.state = 'error'
         }
       })
+    },
+
+    acceptPassword (password) {
+      this.password = password
     }
   }
 }

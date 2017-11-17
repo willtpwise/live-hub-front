@@ -18,7 +18,7 @@ export default {
       let description = ''
 
       if (this.results.length === 1) {
-        description = `One user`
+        description = `One user found`
       } else if (this.results.length) {
         description = `${this.results.length} users found`
       } else {
@@ -26,7 +26,7 @@ export default {
       }
 
       if (this.search.query !== '') {
-        description += ` for ${this.search.query}`
+        description += ` for '${this.search.query}'`
       }
 
       return description

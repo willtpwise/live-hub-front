@@ -27,23 +27,8 @@
             </div>
 
             <div class="field">
-              <label class="label" for='password'>Password</label>
-              <div class="control has-icons-left has-icons-right">
-                <input
-                  class="input"
-                  type="password"
-                  name="password"
-                  id='password'
-                  autocomplete="off"
-                  v-validate="'min:6'"
-                  v-model='password'>
-                <span class="icon is-small is-left">
-                  <i class="fa fa-key" aria-hidden="true"></i>
-                </span>
-              </div>
-              <p class="help">
-                Atleast six characters long.
-              </p>
+              <password-field
+                @passwordChange="acceptPassword($event)"></password-field>
             </div>
 
             <div class="field">
