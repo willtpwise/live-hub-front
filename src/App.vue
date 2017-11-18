@@ -3,17 +3,20 @@
     <app-header></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
+    <chat></chat>
   </div>
 </template>
 
 <script>
 import AppHeader from 'components/app-header/app-header.vue'
 import AppFooter from 'components/app-footer/app-footer.vue'
+import Chat from 'components/chat/chat.vue'
 export default {
   name: 'app',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    Chat
   }
 }
 </script>
