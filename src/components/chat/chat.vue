@@ -5,7 +5,7 @@
 
     <div class="chat-modal" v-if='show'>
       <div class="chat-nav">
-        <button class="chat-nav-item" @click='setPanel("groups")'>
+        <button class="chat-nav-item" @click='setPanel("conversations")'>
           <i class="fa fa-list-ul" aria-hidden="true"></i>
           <span class="sr-only">All converations</span>
         </button>
@@ -18,37 +18,37 @@
         </button>
       </div>
 
-      <!-- All groups -->
+      <!-- All conversations -->
 
-      <div class="chat-groups" v-if='panel === "groups"'>
-        <a class="chat-group" v-for='group in groups' @click='setGroup(group)'>
-          <div class="chat-group-content">
-            <span class="chat-group-title">
-              {{membersList(group.members)}}
+      <div class="chat-conversations" v-if='panel === "conversations"'>
+        <a class="chat-conversation" v-for='conversation in conversations' @click='setConversation(conversation)'>
+          <div class="chat-conversation-content">
+            <span class="chat-conversation-title">
+              {{membersList(conversation.members)}}
             </span>
-            <span class="chat-group-excerpt" v-if='group.messages.length'>
-              {{group.messages[group.messages.length - 1].content}}
+            <span class="chat-conversation-excerpt" v-if='conversation.messages.length'>
+              {{conversation.messages[conversation.messages.length - 1].content}}
             </span>
           </div>
         </a>
       </div>
 
-      <!-- The current group's feed -->
+      <!-- The current conversation's feed -->
 
       <div class="chat-feed" v-else-if='panel === "feed"'>
         <div class="chat-history">
           <ul>
-            <li class="chat-message" v-for='message in group.messages' :title='message.timestamp | timeAtom'>
+            <li class="chat-message" v-for='message in conversation.messages' :title='message.timestamp | timeAtom'>
               <div class="chat-message-users">
                 <user-picture
                   class="chat-message-graphic image is-24x24"
-                  :picture='group.members[message.user].image'
-                  :alt='group.members[message.user].name'>
+                  :picture='conversation.members[message.user].image'
+                  :alt='conversation.members[message.user].name'>
                 </user-picture>
               </div>
               <div class="chat-message-content">{{message.content}}</div>
               <div class="chat-message-meta">
-                <span class="chat-message-author">{{group.members[message.user].name}}</span>
+                <span class="chat-message-author">{{conversation.members[message.user].name}}</span>
                 <time class="chat-message-time" :datetime="message.timestamp | timeAtom">
                   {{message.timestamp | timeFriendly}}
                 </time>
@@ -79,7 +79,7 @@
 
         <ul class="chat-users">
           <li class="chat-user" v-for='user in filteredUsers'>
-            <a href="#" @click='newGroup(user.id)'>
+            <a href="#" @click='newConversation(user.id)'>
               <user-picture
                 class="image is-24x24 chat-user-graphic"
                 :picture='user.display["48x48"]'

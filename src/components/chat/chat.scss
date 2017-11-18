@@ -98,8 +98,8 @@
     }
   }
 
-  .chat-groups {
-    .chat-group {
+  .chat-conversations {
+    .chat-conversation {
       display: flex;
       flex-flow: row nowrap;
       padding: 12px;
@@ -120,23 +120,23 @@
         border-top: 1px solid #f2f2f2;
       }
 
-      .chat-group-graphic {
+      .chat-conversation-graphic {
         img {
           border-radius: 50%;
         }
       }
 
-      .chat-group-content {
+      .chat-conversation-content {
         padding-left: 8px;
       }
 
-      .chat-group-title {
+      .chat-conversation-title {
         color: #000;
         font-size: 14px;
         display: block;
       }
 
-      .chat-group-excerpt {
+      .chat-conversation-excerpt {
         color: #6d6d6d;
         font-size: 13px;
         display: block;

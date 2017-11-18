@@ -15,8 +15,8 @@ export default {
       history: [],
       draft: '',
       search: '',
-      group: false,
-      groups: [
+      conversation: false,
+      conversations: [
         {
           id: 1,
           members: {
@@ -92,9 +92,9 @@ export default {
     title () {
       switch (this.panel) {
         case 'feed':
-          return this.membersList(this.group.members)
+          return this.membersList(this.conversation.members)
           break
-        case 'groups':
+        case 'conversations':
           return 'Messages'
           break
         case 'search':
@@ -118,7 +118,7 @@ export default {
     },
 
     send () {
-      this.group.messages.push({
+      this.conversation.messages.push({
         content: this.draft
       })
       this.draft = ''
@@ -134,8 +134,8 @@ export default {
       }
     },
 
-    setGroup (group) {
-      this.group = group
+    setConversation (conversation) {
+      this.conversation = conversation
       this.setPanel('feed')
     },
 
@@ -148,24 +148,24 @@ export default {
       }
     },
 
-    newGroup (user) {
-      // Resolve existing groups
-      for (var group in this.groups) {
-        for (var member in group.members) {
+    newConversation (user) {
+      // Resolve existing conversations
+      for (var conversation in this.conversations) {
+        for (var member in conversation.members) {
           if (member.id === user) {
-            return this.setGroup(group)
+            return this.setConversation(conversation)
           }
         }
       }
 
-      // Create the group
-      var group = {
+      // Create the conversation
+      var conversation = {
         id: false,
         members: {},
         messages: []
       }
-      this.groups.push(group)
-      this.setGroup(group)
+      this.conversations.push(conversation)
+      this.setConversation(conversation)
     },
 
     membersList (members) {
@@ -186,7 +186,7 @@ export default {
   },
 
   watch: {
-    group: {
+    conversation: {
       handler: function () {
         let feed = this.$el.querySelector('.chat-history')
         if (feed) {
@@ -229,6 +229,6 @@ export default {
       limit: -1
     })
 
-    this.group = this.groups[0] || false
+    this.conversation = this.conversations[0] || false
   }
 }
