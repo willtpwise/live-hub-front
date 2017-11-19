@@ -35,6 +35,10 @@ export default {
         user: this.user.id,
         content: this.draft
       })
+      this.$store.dispatch('chat/send', {
+        conversation: this.conversation.id,
+        content: this.draft
+      })
       this.draft = ''
     },
 

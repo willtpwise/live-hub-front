@@ -35,20 +35,22 @@ export default {
       })
 
       return found
-    },
-
-    setPanel (to) {
-      this.$store.dispatch('chat/setPanel', to)
     }
 
   },
 
   methods: {
+
     newConversation (user) {
       this.$store.dispatch('chat/newConversation', {
         user: user
       })
       this.setPanel('feed')
+    },
+
+    setPanel (to) {
+      this.$store.dispatch('chat/setPanel', to)
     }
+    
   }
 }

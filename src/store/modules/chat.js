@@ -44,7 +44,20 @@ export default {
         var conversations = context.state.conversations
         conversations.push(response.data.body)
         context.commit('setConversations', conversations)
-        context.commit('setConversation', response.data.body)
+        context.commit('setCurrent', response.data.body)
+      })
+    },
+
+    send (context, message) {
+      console.warn(message)
+      axios.post('/chat/messages/create/', qs.stringify(message))
+      .then((response) => {
+        console.warn(response)
+
+        // var conversations = context.state.conversations[message.conversation]
+        // conversations.push(response.data.body)
+        // context.commit('setConversations', conversations)
+        // context.commit('setCurrent', response.data.body)
       })
     }
   }

@@ -23,8 +23,9 @@ export default {
   computed: {
 
     ...mapState({
+      user: state => state.current.user,
       panel: state => state.chat.panel,
-      conversation: state => state.chat.conversation,
+      conversation: state => state.chat.current,
       conversations: state => state.chat.conversations
     }),
 
@@ -43,12 +44,14 @@ export default {
     },
 
     membersList () {
-      if (this.conversation) {
+      if (this.conversation && this.user) {
         var members = this.conversation.members
         var names = []
 
         for (let id in members) {
-          names.push(members[id].name)
+          if (id !== this.user.id) {
+            names.push(members[id].name)
+          }
         }
 
         names = names.join(', ')
@@ -56,11 +59,9 @@ export default {
         if (names.length > 35) {
           names = names.substr(0, 32) + '...'
         }
-
-        return names
-      } else {
-        return 'New conversation'
       }
+
+      return names || 'New conversation'
     }
 
   },
@@ -79,6 +80,8 @@ export default {
 
   mounted () {
     this.$store.dispatch('chat/getConversations')
-    this.$store.dispatch('users/getUsers')
+    if (!this.users) {
+      this.$store.dispatch('users/getUsers')
+    }
   }
 }
