@@ -98,53 +98,6 @@
     }
   }
 
-  .chat-conversations {
-    .chat-conversation {
-      display: flex;
-      flex-flow: row nowrap;
-      padding: 12px;
-      position: relative;
-      transition: all 0.3s ease;
-
-      &:hover,
-      &:focus {
-        background: #f2f2f2;
-      }
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 100%;
-        left: 12px;
-        width: calc(100% - 24px);
-        border-top: 1px solid #f2f2f2;
-      }
-
-      .chat-conversation-graphic {
-        img {
-          border-radius: 50%;
-        }
-      }
-
-      .chat-conversation-content {
-        padding-left: 8px;
-      }
-
-      .chat-conversation-title {
-        color: #000;
-        font-size: 14px;
-        display: block;
-      }
-
-      .chat-conversation-excerpt {
-        color: #6d6d6d;
-        font-size: 13px;
-        display: block;
-        font-style: italic;
-      }
-    }
-  }
-
   .chat-feed {
     height: calc(100% - 30px);
     padding: 12px;
@@ -221,32 +174,6 @@
     .chat-compose {
       height: 30%;
       min-height: auto;
-    }
-  }
-
-  .chat-search {
-    padding: 12px;
-
-    .chat-user {
-      font-size: 14px;
-      margin-bottom: 8px;
-
-      a {
-        display: flex;
-        flex-flow: row nowrap;
-        color: #000;
-      }
-
-      .chat-user-graphic {
-        img {
-          border-radius: 50%;
-        }
-      }
-
-      .chat-user-content {
-        padding-left: 8px;
-        margin: auto 0;
-      }
     }
   }
 }

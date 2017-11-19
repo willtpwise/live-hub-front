@@ -8,6 +8,7 @@ import search from './modules/search.js'
 import profile from './modules/profile.js'
 import users from './modules/users.js'
 import recent from './modules/recent.js'
+import chat from './modules/chat.js'
 
 const store = new Vuex.Store({
   modules: {
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
     search,
     profile,
     users,
-    recent
+    recent,
+    chat
   }
 })
 

@@ -1,0 +1,31 @@
+.chat-search {
+  margin: 12px;
+  height: calc( 100% - 31px );
+
+  .chat-users {
+    height: calc( 100% - 36px );
+    overflow-y: scroll;
+  }
+
+  .chat-user {
+    font-size: 14px;
+    margin-bottom: 8px;
+
+    a {
+      display: flex;
+      flex-flow: row nowrap;
+      color: #000;
+    }
+
+    .chat-user-graphic {
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .chat-user-content {
+      padding-left: 8px;
+      margin: auto 0;
+    }
+  }
+}
