@@ -83,5 +83,10 @@ export default {
     if (!this.users) {
       this.$store.dispatch('users/getUsers')
     }
+
+    // This checks for new messages
+    setInterval(() => {
+      this.$store.dispatch('chat/checkMessages')
+    }, 1000)
   }
 }

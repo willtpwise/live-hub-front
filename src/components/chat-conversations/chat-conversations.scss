@@ -1,7 +1,7 @@
 .conversations {
   overflow-y: scroll;
   max-height: calc(100% - 31px);
-  
+
   .conversations-item {
     display: flex;
     flex-flow: row nowrap;
@@ -43,7 +43,6 @@
       color: #6d6d6d;
       font-size: 13px;
       display: block;
-      font-style: italic;
     }
 
     &.conversations-notfound {

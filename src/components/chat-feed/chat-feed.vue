@@ -16,7 +16,7 @@
               :alt='conversation.members[message.user].name'>
             </user-picture>
           </div>
-          <div class="chat-message-content">{{message.content}}</div>
+          <div class="chat-message-content" v-html="parseMessage(message.content)"></div>
           <div class="chat-message-meta">
             <span class="chat-message-author">{{conversation.members[message.user].name}}</span>
             <time class="chat-message-time" v-if='message.created' :datetime="message.created | timeAtom">

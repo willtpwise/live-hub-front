@@ -49,15 +49,45 @@ export default {
     },
 
     send (context, message) {
-      console.warn(message)
-      axios.post('/chat/messages/create/', qs.stringify(message))
+      axios.post('/chat/messages/create/', qs.stringify(message.body))
       .then((response) => {
-        console.warn(response)
+        // Get the current conversation
+        var conversation = context.state.current
 
-        // var conversations = context.state.conversations[message.conversation]
-        // conversations.push(response.data.body)
-        // context.commit('setConversations', conversations)
-        // context.commit('setCurrent', response.data.body)
+        // Add the message
+        conversation.messages.push(response.data.body)
+      })
+    },
+
+    checkMessages (context) {
+      // Get the last message's ID
+      var oldest = 0
+      context.state.conversations.forEach((conversation) => {
+        conversation.messages.forEach((message) => {
+          if (message.id > oldest) {
+            oldest = message.id
+          }
+        })
+      })
+
+      // Request the new messages
+      axios.post('/chat/conversations/', qs.stringify({after: oldest}))
+      .then((response) => {
+        var conversations = response.data.body
+
+        // Append or create each conversation
+        conversations.forEach((newConversation) => {
+          // Check to see if the passed conversation already exists
+          var oldFeed = false
+          context.conversations.forEach((oldConversation) => {
+            if (oldConversation.id === newConversation.id) {
+              
+            }
+          })
+
+        })
+
+        context.commit('setConversations', conversations)
       })
     }
   }

@@ -25,25 +25,45 @@ export default {
 
   methods: {
     compose (e) {
-      if (e.key === 'Enter' && !e.altKey) {
-        this.send()
+      if (e.key === 'Enter') {
+        if (e.altKey) {
+          this.draft += '\n'
+        } else {
+          this.send()
+          e.preventDefault()
+        }
       }
     },
 
     send () {
-      this.conversation.messages.push({
-        user: this.user.id,
-        content: this.draft
-      })
       this.$store.dispatch('chat/send', {
-        conversation: this.conversation.id,
-        content: this.draft
+        temp: Date.now(),
+        body: {
+          conversation: this.conversation.id,
+          content: this.draft
+        }
       })
       this.draft = ''
     },
 
     isAuthor (message) {
       return Number(this.user.id) === Number(message.user)
+    },
+
+    parseMessage (content) {
+      // Format new lines
+      content = content.replace(/\\n/g, '<br>')
+
+      return content
+    },
+
+    scrollBottom () {
+      var feed = this.$el.querySelector('.chat-history')
+      if (feed) {
+        setTimeout(() => {
+          feed.scrollTop = feed.scrollHeight
+        }, 100)
+      }
     }
   },
 
@@ -72,5 +92,18 @@ export default {
       }
       return `${hours}:${minutes} ${lapse}`
     }
+  },
+
+  watch: {
+    conversation: {
+      handler: function () {
+        this.scrollBottom()
+      },
+      deep: true
+    }
+  },
+
+  mounted () {
+    this.scrollBottom()
   }
 }
