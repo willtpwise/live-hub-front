@@ -1,4 +1,5 @@
 import axios from 'utilities/axios'
+// import deepmerge from 'deepmerge'
 import qs from 'qs'
 
 export default {
@@ -42,7 +43,7 @@ export default {
       axios.post('/chat/conversations/create/', qs.stringify(user))
       .then((response) => {
         var conversations = context.state.conversations
-        conversations.push(response.data.body)
+        conversations[response.data.body.id] = response.data.body
         context.commit('setConversations', conversations)
         context.commit('setCurrent', response.data.body)
       })
@@ -62,32 +63,31 @@ export default {
     checkMessages (context) {
       // Get the last message's ID
       var oldest = 0
-      context.state.conversations.forEach((conversation) => {
-        conversation.messages.forEach((message) => {
-          if (message.id > oldest) {
+      for (let conversation in context.state.conversations) {
+        context.state.conversations[conversation].messages.forEach((message) => {
+          if (Number(message.id) > Number(oldest)) {
             oldest = message.id
           }
         })
-      })
+      }
 
       // Request the new messages
       axios.post('/chat/conversations/', qs.stringify({after: oldest}))
-      .then((response) => {
-        var conversations = response.data.body
+      .then((response) => {)
+        var newConversations = response.data.body
+        var oldConversations = context.state.conversations
 
-        // Append or create each conversation
-        conversations.forEach((newConversation) => {
-          // Check to see if the passed conversation already exists
-          var oldFeed = false
-          context.conversations.forEach((oldConversation) => {
-            if (oldConversation.id === newConversation.id) {
-              
-            }
+        for (let id in newConversations) {
+          if (!oldConversations[id]) {
+            oldConversations[id] = newConversations[id]
+          }
+
+          newConversations[id].messages.forEach((message) => {
+            oldConversations[id].messages.push(message)
           })
+        }
 
-        })
-
-        context.commit('setConversations', conversations)
+        context.commit('setConversations', oldConversations)
       })
     }
   }

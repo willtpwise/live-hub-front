@@ -13,7 +13,7 @@ export default {
     }),
 
     hasConversations () {
-      return Array.isArray(this.conversations) && this.conversations.length > 0
+      return this.conversations
     }
 
   },

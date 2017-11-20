@@ -87,6 +87,6 @@ export default {
     // This checks for new messages
     setInterval(() => {
       this.$store.dispatch('chat/checkMessages')
-    }, 1000)
+    }, 3000)
   }
 }

@@ -53,6 +53,7 @@
     "autolinker": "^1.4.4",
     "axios": "^0.15.3",
     "baggage-loader": "^1.0.0",
+    "deepmerge": "^2.0.1",
     "font-awesome": "^4.7.0",
     "v-tooltip": "^2.0.0-rc.2",
     "vee-validate": "^2.0.0-rc.17",
