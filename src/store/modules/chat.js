@@ -73,7 +73,7 @@ export default {
 
       // Request the new messages
       axios.post('/chat/conversations/', qs.stringify({after: oldest}))
-      .then((response) => {)
+      .then((response) => {
         var newConversations = response.data.body
         var oldConversations = context.state.conversations
 
