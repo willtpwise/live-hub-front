@@ -3,15 +3,12 @@
 <template>
   <div
     class="notification"
-    :class="className"
-    :hidden="!visible"
-    :aria-hidden="!visible">
-    <button
-      v-if="dismissable"
-      class="delete"
-      aria-label="Hide this notification"
-      @click="toggle"></button>
-      <p v-if="heading"><strong v-html="heading"></strong></p>
-      <p v-if="body" v-html="body"></p>
+    :aria-live="{'polite': visible}"
+    :aria-labelledby="titleId"
+    :aria-describedby="bodyId"
+    @click="onClick($event)">
+    <button class="delete" @click="dismiss" aria-label='Dismiss' title='Dismiss'></button>
+    <h4 :id='titleId'>{{title}}</h4>
+    <p :id='bodyId' v-html='body'></p>
   </div>
 </template>

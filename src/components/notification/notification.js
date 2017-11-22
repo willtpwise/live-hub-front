@@ -2,36 +2,63 @@ export default {
   name: 'notification',
 
   props: {
-    heading: {
-      required: false
+    title: {
+      // type: 'String',
+      default: ''
     },
     body: {
-      required: false
+      // type: 'String',
+      default: ''
     },
-    visible: {
-      default: true
+    onClick: {
+      // type: 'Function',
+      default: () => {
+        return
+      }
     },
-    type: {
-      default: 'info'
-    },
-    dismissable: {
-      type: Boolean,
-      default: true
+    index: {
+      // type: 'Number',
+      required: true
+    }
+  },
+
+  data () {
+    return {
+      visible: true,
     }
   },
 
   computed: {
-    className () {
-      if (this.type) {
-        return 'is-' + this.type
-      }
-      return ''
+
+    titleId () {
+      return `notification-title-${this._uid}`
+    },
+
+    bodyId () {
+      return `notification-body-${this._uid}`
     }
+
   },
 
   methods: {
-    toggle () {
-      this.visible = this.visible ? false : true
+
+    notificationBody (content) {
+      content = content.replace(/\\n/g, ' ')
+      if (content.length > 90) {
+        content.substr(0, 87) + '...'
+      }
+      return content
+    },
+
+    dismiss () {
+      this.$store.dispatch('notifications/dismissNotification', this.index)
     }
+
+  },
+
+  mounted () {
+    setTimeout(() => {
+      this.dismiss()
+    }, 4000)
   }
 }

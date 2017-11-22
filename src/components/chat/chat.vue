@@ -3,7 +3,7 @@
 <template>
   <div class="chat">
 
-    <div class="chat-modal" v-if='show'>
+    <div class="chat-modal" v-if='open'>
 
       <div class="chat-nav">
         <button class="chat-nav-item" @click='setPanel("conversations")'>

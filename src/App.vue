@@ -4,19 +4,22 @@
     <router-view></router-view>
     <app-footer></app-footer>
     <chat></chat>
+    <notification-feed></notification-feed>
   </div>
 </template>
 
 <script>
 import AppHeader from 'components/app-header/app-header.vue'
 import AppFooter from 'components/app-footer/app-footer.vue'
+import NotificationFeed from 'components/notification-feed/notification-feed.vue'
 import Chat from 'components/chat/chat.vue'
 export default {
   name: 'app',
   components: {
     AppHeader,
     AppFooter,
-    Chat
+    Chat,
+    NotificationFeed
   }
 }
 </script>

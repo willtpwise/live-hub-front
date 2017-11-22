@@ -7,13 +7,18 @@ export default {
   computed: {
 
     ...mapState({
+      user: state => state.current.user,
       panel: state => state.chat.panel,
       current: state => state.chat.current,
       conversations: state => state.chat.conversations,
     }),
 
     hasConversations () {
-      return this.conversations
+      if (!this.conversations) {
+        return false
+      } else {
+        return Object.keys(this.conversations).length > 0
+      }
     }
 
   },
@@ -26,19 +31,23 @@ export default {
     },
 
     membersList (members) {
-      var names = []
+      if (this.user) {
+        var names = []
 
-      for (let id in members) {
-        names.push(members[id].name)
+        for (let id in members) {
+          if (id !== this.user.id) {
+            names.push(members[id].name)
+          }
+        }
+
+        names = names.join(', ')
+
+        if (names.length > 35) {
+          names = names.substr(0, 32) + '...'
+        }
       }
 
-      names = names.join(', ')
-
-      if (names.length > 35) {
-        names = names.substr(0, 32) + '...'
-      }
-
-      return names
+      return names || 'New conversation'
     },
 
     setPanel (to) {

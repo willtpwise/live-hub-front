@@ -1,12 +1,12 @@
 import axios from 'utilities/axios'
-// import deepmerge from 'deepmerge'
 import qs from 'qs'
 
 export default {
   namespaced: true,
 
   state: {
-    panel: 'search',
+    open: false,
+    panel: 'conversations',
     current: false,
     conversations: false
   },
@@ -20,10 +20,29 @@ export default {
     },
     setPanel (state, payload) {
       state.panel = payload
+    },
+    setOpen (state, payload) {
+      state.open = payload
     }
   },
 
   actions: {
+    open (context) {
+      context.commit('setOpen', true)
+    },
+
+    close (context) {
+      context.commit('setOpen', false)
+    },
+
+    toggle (context) {
+      if (context.state.open) {
+        context.commit('setOpen', false)
+      } else {
+        context.commit('setOpen', true)
+      }
+    },
+
     setPanel (context, panel) {
       context.commit('setPanel', panel)
     },
@@ -40,7 +59,20 @@ export default {
     },
 
     newConversation (context, user) {
-      axios.post('/chat/conversations/create/', qs.stringify(user))
+      // Prevent duplicates
+      var conversations = context.state.conversations
+      for (let con in conversations) {
+        for (let id in conversations[con].members) {
+          if (id === user) {
+            context.commit('setCurrent', conversations[con])
+            return
+          }
+        }
+      }
+
+      axios.post('/chat/conversations/create/', qs.stringify({
+        user: user
+      }))
       .then((response) => {
         var conversations = context.state.conversations
         conversations[response.data.body.id] = response.data.body
@@ -74,6 +106,7 @@ export default {
       // Request the new messages
       axios.post('/chat/conversations/', qs.stringify({after: oldest}))
       .then((response) => {
+        var notifications = []
         var newConversations = response.data.body
         var oldConversations = context.state.conversations
 
@@ -83,11 +116,37 @@ export default {
           }
 
           newConversations[id].messages.forEach((message) => {
+            // Append the message
             oldConversations[id].messages.push(message)
+
+            // Create the notification
+            var author = oldConversations[id].members[Number(message.user)]
+            notifications.push({
+              conversation: id,
+              title: author.name,
+              body: message.content,
+              onClick: function () {
+                // Open the conversation on click
+                if (context.state.conversations[id]) {
+                  context.commit('setCurrent', context.state.conversations[id])
+                  context.commit('setPanel', 'feed')
+                  context.commit('setOpen', true)
+                }
+              }
+            })
           })
         }
 
         context.commit('setConversations', oldConversations)
+        notifications.forEach((notification) => {
+          context.dispatch(
+            'notifications/pushNotification',
+            notification,
+            {
+              root: true
+            }
+          )
+        })
       })
     }
   }

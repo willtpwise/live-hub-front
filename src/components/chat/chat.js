@@ -14,16 +14,11 @@ export default {
     ChatSearch
   },
 
-  data () {
-    return {
-      show: true
-    }
-  },
-
   computed: {
 
     ...mapState({
       user: state => state.current.user,
+      open: state => state.chat.open,
       panel: state => state.chat.panel,
       conversation: state => state.chat.current,
       conversations: state => state.chat.conversations
@@ -63,13 +58,12 @@ export default {
 
       return names || 'New conversation'
     }
-
   },
 
   methods: {
 
     toggle () {
-      this.show = this.show ? false : true
+      this.$store.dispatch('chat/toggle')
     },
 
     setPanel (to) {

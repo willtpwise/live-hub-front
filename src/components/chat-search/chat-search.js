@@ -21,18 +21,17 @@ export default {
     }),
 
     filteredUsers () {
-      if (this.search === '') {
-        return this.users
-      }
-
       let found = []
-      let search = this.search.toLowerCase()
-      ;[].forEach.call(this.users, (user) => {
-        let name = user.first_name + user.last_name
-        if (name.toLowerCase().indexOf(search) >= 0) {
-          found.push(user)
-        }
-      })
+
+      if (this.users) {
+        let search = this.search.toLowerCase()
+        ;[].forEach.call(this.users, (user) => {
+          let name = user.first_name + user.last_name
+          if (this.user.id !== user.id && name.toLowerCase().indexOf(search) >= 0) {
+            found.push(user)
+          }
+        })
+      }
 
       return found
     }
@@ -42,15 +41,13 @@ export default {
   methods: {
 
     newConversation (user) {
-      this.$store.dispatch('chat/newConversation', {
-        user: user
-      })
+      this.$store.dispatch('chat/newConversation', user)
       this.setPanel('feed')
     },
 
     setPanel (to) {
       this.$store.dispatch('chat/setPanel', to)
     }
-    
+
   }
 }
