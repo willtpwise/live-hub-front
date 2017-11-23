@@ -1,5 +1,6 @@
 .conversations {
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   max-height: calc(100% - 31px);
 
   .conversations-item {
@@ -12,12 +13,13 @@
     &:hover,
     &:focus {
       background: #f2f2f2;
+      outline: none;
     }
 
     &:after {
       content: '';
       position: absolute;
-      top: 100%;
+      top: calc(100% - 1px);
       left: 12px;
       width: calc(100% - 24px);
       border-top: 1px solid #f2f2f2;

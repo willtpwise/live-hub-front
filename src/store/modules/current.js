@@ -19,6 +19,15 @@ export default {
       payload = qs.stringify(payload)
       axios.post('/users/update/', payload)
       .then((response) => {
+        // Notify
+        context.dispatch('notifications/push', {
+          title: 'Changes saved',
+          body: 'Changes to your profile have been saved.'
+        }, {
+          root: true
+        })
+
+        // Dispatch listeners
         let event = new CustomEvent('setUserComplete')
         document.dispatchEvent(event)
       })

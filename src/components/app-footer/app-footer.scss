@@ -1,24 +1,60 @@
 .footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  .footer-brand {
-    margin: auto 0;
-    font-family: stag-bold;
-    font-size: 120px;
-    line-height: 0.8;
-    span {
-      display: block;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .container {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+  }
+
+  .footer-alert,
+  .footer-actions,
+  .footer-legal {
+    flex: 1;
+  }
+
+  .footer-alert {
+    margin: auto;
+    font-size: 13px;
+    padding-left: 12px;
+  }
+
+  .footer-legal {
+    text-align: center;
+    margin: auto;
+    font-size: 13px;
+  }
+
+  .footer-actions {
+    display: flex;
+
+    .field {
+      margin-left: auto;
     }
   }
 
-  .column {
-    display: flex;
-    flex-wrap: wrap;
-  }
+  .button {
+    background: transparent;
+    border: none;
+    transition: all 0.3s ease;
 
-  .footer-subtle{
-    width: 100%;
-    text-align: right;
-    margin-top: auto;
+    &:hover,
+    &:focus {
+      background: #fff;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
+}
+
+body {
+  padding-bottom: 36px;
 }

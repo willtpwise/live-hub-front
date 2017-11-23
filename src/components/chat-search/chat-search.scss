@@ -5,6 +5,7 @@
   .chat-users {
     height: calc( 100% - 36px );
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
 
   .chat-user {

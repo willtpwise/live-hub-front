@@ -42,7 +42,7 @@
             </button>
             <button
               @click="duplicate(index)"
-              class="button is-white"
+              class="button is-white is-hidden-mobile"
               type="button"
               role="button"
               aria-label='Duplicate this item'>

@@ -1,8 +1,8 @@
 <style src='./chat.scss' lang='scss'></style>
 <script src='./chat.js'></script>
 <template>
-  <div class="chat">
-
+  <div class="chat" :class="{'chat--open': open}">
+    <div class="chat-underlay" aria-hidden="true" @click="close"></div>
     <div class="chat-modal" v-if='open'>
 
       <div class="chat-nav">
@@ -26,9 +26,5 @@
       <chat-search v-else></chat-search>
 
     </div>
-
-    <button class="chat-toggle" @click='toggle' aria-label='Toggle chat'>
-      <i class="fa fa-comments-o" aria-hidden="true"></i>
-    </button>
   </div>
 </template>

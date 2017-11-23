@@ -4,6 +4,11 @@ import store from './store'
 import router from './router'
 import VeeValidate from 'vee-validate'
 import FBSignInButton from 'vue-facebook-signin-button'
+import * as OfflinePluginRuntime from 'offline-plugin/runtime'
+
+// Service Worker
+// See: https://github.com/NekR/offline-plugin
+OfflinePluginRuntime.install()
 
 // Facebook signin
 Vue.use(FBSignInButton)

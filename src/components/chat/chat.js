@@ -62,12 +62,12 @@ export default {
 
   methods: {
 
-    toggle () {
-      this.$store.dispatch('chat/toggle')
-    },
-
     setPanel (to) {
       this.$store.dispatch('chat/setPanel', to)
+    },
+
+    close () {
+      this.$store.dispatch('chat/close')
     }
 
   },

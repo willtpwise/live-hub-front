@@ -2,25 +2,30 @@
 <script src='./user-card.js'></script>
 <template>
   <article class="media user-card" :aria-labelledby="labelId">
-    <figure class="user-card-display media-left">
-      <router-link :to='profileUrl' :title="fullName">
-        <user-picture class="image is-128x128" :picture="user.display['256x256']" :alt="fullName"></user-picture>
-      </router-link>
-    </figure>
+
+    <router-link :to='profileUrl' :title="fullName" class="user-card-display user-card-desktop-display media-left">
+      <user-picture class="image is-128x128" :picture="user.display['256x256']" :alt="fullName"></user-picture>
+    </router-link>
+
     <div class="media-content">
+
       <div class="content">
-        <h2 class="title is-3" :id="labelId">
-          <router-link :to='profileUrl' tabindex="-1">
-            {{fullName}}
-          </router-link>
-        </h2>
-        <p class="subtitle" v-if='user.status'>
-          {{user.status}}
-        </p>
-        <p>
+        <div class="user-card-header">
+          <user-picture class="image is-24x24 user-card-display user-card-mobile-display" :picture="user.display['48x48']" :alt="fullName"></user-picture>
+          <h2 class="title is-3 user-card-title" :id="labelId">
+            <router-link :to='profileUrl'>
+              {{fullName}}
+            </router-link>
+          </h2>
+          <p class="subtitle user-card-status" v-if='user.status'>
+            {{user.status}}
+          </p>
+        </div>
+        <p class="user-card-bio">
           {{shortenedBio}}
         </p>
       </div>
+
       <div
         :aria-label="instrumentsLabel"
         class="user-card-instruments tags"
@@ -32,6 +37,7 @@
           {{instrument.type}}
         </span>
       </div>
+
     </div>
   </article>
 </template>

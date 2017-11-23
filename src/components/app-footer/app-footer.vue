@@ -1,53 +1,35 @@
 <style src='./app-footer.scss' lang='scss'></style>
 <script src='./app-footer.js'></script>
 <template>
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
-      <div class="columns">
-        <div class="column">
-          <p class="footer-brand">
-            <span class="footer-brand-live">Live</span>
-            <span class="footer-brand-hub">HUB</span>
+      <chat></chat>
+      <div class="footer-alert">
+        <span class="icon is-small">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </span>
+        Offline
+      </div>
+      <div class="footer-legal">
+        {{legal}}
+      </div>
+      <div class="footer-actions">
+        <div class="field has-addons">
+          <p class="control">
+            <button role="button" class="button" @click="openChat" title="Messages">
+              <span class="icon is-small">
+                <i class="fa fa-comments" aria-label="Messages"></i>
+              </span>
+            </button>
           </p>
-        </div>
-        <div class="column">
-          <subscribe></subscribe>
-        </div>
-        <div class="column">
-          <recent-signups></recent-signups>
-        </div>
-        <div class="column has-text-right">
-          <div class="footer-subtle">
-            <div class="footer-social" aria-label="LiveHUB social accounts">
-              <a
-                href="#"
-                title="Visit LiveHUB's Facebook page"
-                aria-label="Visit LiveHUB's Facebook page">
-                <span class="icon">
-                  <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
-                </span>
-              </a>
-              <a
-                href="#"
-                title="Visit LiveHUB's Twitter page"
-                aria-label="Visit LiveHUB's Twitter page">
-                <span class="icon">
-                  <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
-                </span>
-              </a>
-              <a
-                href="#"
-                title="Visit LiveHUB's Youtube page"
-                aria-label="Visit LiveHUB's Youtube page">
-                <span class="icon">
-                  <i class="fa fa-youtube-square fa-lg" aria-hidden="true"></i>
-                </span>
-              </a>
-            </div>
-            <p class="footer-legal">
-              <small>{{legal}}</small>
-            </p>
-          </div>
+          <p class="control">
+            <router-link class="button" to="/app/users" title="Search users">
+              <span class="icon is-small">
+                <i class="fa fa-search" aria-label="Search users"></i>
+              </span>
+            </router-link>
+          </p>
+          </p>
         </div>
       </div>
     </div>

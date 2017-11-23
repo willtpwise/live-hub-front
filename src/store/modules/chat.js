@@ -140,7 +140,7 @@ export default {
         context.commit('setConversations', oldConversations)
         notifications.forEach((notification) => {
           context.dispatch(
-            'notifications/pushNotification',
+            'notifications/push',
             notification,
             {
               root: true

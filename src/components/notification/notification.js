@@ -51,7 +51,7 @@ export default {
     },
 
     dismiss () {
-      this.$store.dispatch('notifications/dismissNotification', this.index)
+      this.$store.dispatch('notifications/dismiss', this.index)
     }
 
   },

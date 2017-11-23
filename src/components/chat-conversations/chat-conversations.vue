@@ -4,6 +4,7 @@
   <div class="conversations">
     <div v-if='hasConversations'>
       <a
+        href="#"
         class="conversations-item"
         v-for='conversation in conversations'
         @click='setConversation(conversation)'>

@@ -8,9 +8,67 @@
   }
 
   .user-card-display {
-    .image {
-      border-radius: 50%;
-      overflow: hidden;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.5s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &.user-card-mobile-display {
+      display: none;
+    }
+  }
+
+  .user-card-title {
+    margin-top: 0 !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    & {
+      flex-flow: row wrap;
+
+      .user-card-display {
+        &.user-card-desktop-display {
+          display: none;
+        }
+        &.user-card-mobile-display {
+          display: inline-block;
+          margin: 0 8px 0 0;
+        }
+      }
+
+      .user-card-header {
+        padding-left: 30px;
+        position: relative;
+        margin-bottom: 8px;
+
+        .user-card-display {
+          position: absolute;
+          top: 2px;
+          left: 0;
+
+          img {
+            border-radius: 50%;
+          }
+        }
+
+        .user-card-title {
+          font-size: 20px;
+          margin: 0;
+        }
+
+        .user-card-status {
+          font-size: 14px;
+          margin: 0;
+          width: 100%;
+        }
+      }
+
+      .user-card-bio {
+        font-size: 15px;
+      }
     }
   }
 }

@@ -33,7 +33,6 @@
     <textarea
       v-model='draft'
       class="chat-compose textarea"
-      @keydown="compose($event)"
-      placeholder="Textarea"></textarea>
+      @keydown="compose($event)"></textarea>
   </div>
 </template>

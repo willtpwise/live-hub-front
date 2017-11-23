@@ -11,7 +11,7 @@
         <search-form id="user-search"></search-form>
       </div>
     </header>
-    <section class="section users-results" aria-labelledby="users-results-label" aria-describedby="results-description">
+    <section class="users-results" aria-labelledby="users-results-label" aria-describedby="results-description">
       <div class="container">
         <transition-group name="list" tag="p">
           <user-card

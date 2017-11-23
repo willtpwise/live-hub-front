@@ -2,16 +2,7 @@ export default {
   namespaced: true,
 
   state: {
-    notifications: [
-      {
-        id: Date.now(),
-        title: 'Some notification',
-        body: 'Some notification body',
-        onClick: () => {
-          console.warn(this)
-        }
-      }
-    ]
+    notifications: []
   },
 
   mutations: {
@@ -35,11 +26,11 @@ export default {
   },
 
   actions: {
-    pushNotification (context, notification) {
+    push (context, notification) {
       context.commit('addNotification', notification)
     },
 
-    dismissNotification (context, id) {
+    dismiss (context, id) {
       context.commit('removeNotification', id)
     }
   }

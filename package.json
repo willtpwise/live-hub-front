@@ -55,6 +55,7 @@
     "baggage-loader": "^1.0.0",
     "deepmerge": "^2.0.1",
     "font-awesome": "^4.7.0",
+    "offline-plugin": "^4.8.4",
     "v-tooltip": "^2.0.0-rc.2",
     "vee-validate": "^2.0.0-rc.17",
     "vue": "^2.1.10",

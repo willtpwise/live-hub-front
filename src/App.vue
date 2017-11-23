@@ -3,7 +3,6 @@
     <app-header></app-header>
     <router-view></router-view>
     <app-footer></app-footer>
-    <chat></chat>
     <notification-feed></notification-feed>
   </div>
 </template>
