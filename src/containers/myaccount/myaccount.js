@@ -4,7 +4,7 @@ import LocationField from 'components/location-field/location-field.vue'
 import LoadingSpinner from 'components/loading-spinner/loading-spinner.vue'
 import PasswordField from 'components/password-field/password-field.vue'
 import DisplayPicField from 'components/display-pic-field/display-pic-field.vue'
-import Notification from 'components/notification/notification.vue'
+import UserPicture from 'components/user-picture/user-picture.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     LocationField,
     LoadingSpinner,
     DisplayPicField,
-    Notification
+    UserPicture
   },
 
   computed: {

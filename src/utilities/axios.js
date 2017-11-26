@@ -4,7 +4,7 @@ import setToken from 'utilities/set-token.js'
 
 // Config defaults
 let config = {
-  baseURL: 'http://live-hub-back.int/'
+  baseURL: 'http://back.livehub-staging.net/'
 }
 const $axios = axios.create(config)
 

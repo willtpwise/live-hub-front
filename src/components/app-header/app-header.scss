@@ -1,4 +1,16 @@
+@import "./../../assets/variables.scss";
 .header {
+  font-size: 15px;
+
+  &.is-active {
+    background: #fff;
+  }
+
+  &,
+  .navbar {
+    background: transparent;
+  }
+
   .header-profile {
     .header-profile-display {
       margin-right: 8px;
@@ -6,5 +18,13 @@
       overflow: hidden;
       float: left;
     }
+  }
+
+  .button {
+    background: transparent;
+  }
+
+  .navbar-link:after {
+    border-color: $grey-dark
   }
 }

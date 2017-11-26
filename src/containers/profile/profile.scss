@@ -1,7 +1,14 @@
+@import "./../../assets/variables.scss";
 .user {
+  .user-header {
+    .title,
+    p {
+      color: $grey-dark;
+    }
+  }
   .user-display {
     img {
-      border-radius: 50%;
+      border-radius: 3px;
       width: 100%;
       max-width: 300px;
       margin: 0 auto;

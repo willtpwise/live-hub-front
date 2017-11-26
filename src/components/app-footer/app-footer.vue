@@ -3,18 +3,20 @@
 <template>
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <chat></chat>
+      <!-- <chat></chat> -->
       <div class="footer-alert">
-        <span class="icon is-small">
+        <!-- WIP -->
+        <!-- <span class="icon is-small">
           <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
         </span>
-        Offline
+        Offline -->
       </div>
       <div class="footer-legal">
         {{legal}}
       </div>
       <div class="footer-actions">
-        <div class="field has-addons">
+        <!-- WIP -->
+        <!-- <div class="field has-addons">
           <p class="control">
             <button role="button" class="button" @click="openChat" title="Messages">
               <span class="icon is-small">
@@ -30,7 +32,7 @@
             </router-link>
           </p>
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
   </footer>

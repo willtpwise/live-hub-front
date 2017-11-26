@@ -6,16 +6,10 @@
       <div class="container">
         <header class="section">
           <h1 class="title is-1">
-            Login to LiveHUB
+            Login to <strong>LiveHUB</strong>
           </h1>
         </header>
         <section class="section login-methods container-small">
-          
-          <notification
-            type="warning"
-            v-if="error"
-            :body="error"></notification>
-
           <div class="login-methods-social">
             <div class="login-button">
               <fb-signin-button

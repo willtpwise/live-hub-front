@@ -21,6 +21,7 @@ export default {
       .then((response) => {
         // Notify
         context.dispatch('notifications/push', {
+          class: 'is-info',
           title: 'Changes saved',
           body: 'Changes to your profile have been saved.'
         }, {

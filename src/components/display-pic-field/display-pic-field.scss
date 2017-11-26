@@ -1,3 +1,4 @@
+@import "./../../assets/variables.scss";
 .display-pic-field {
 
   .display-pic-field-form {
@@ -9,6 +10,26 @@
     }
     .display-pic-field-input {
       padding-left: 30px;
+      .file-cta {
+        color: $grey-dark;
+      }
+      .file-input {
+        &:focus {
+          + .file-cta {
+            background: $primary-dark;
+            position: relative;
+            &:after {
+              content: '';
+              position: absolute;
+              width: calc(100% + 2px);
+              height: calc(100% + 2px);
+              border: 2px solid $grey-dark;
+              top: -1px;
+              left: -1px;
+            }
+          }
+        }
+      }
     }
     .display-pic-field-preview {
       figure {

@@ -2,9 +2,11 @@
 <script src='./myaccount.js'></script>
 <template>
   <article class="myaccount">
-    <header class="section">
+    <header class="section myaccount-header">
       <div class="container">
-        <h1 class="title is-1">My account</h1>
+        <user-picture class="image is-128x128 image-circle" :picture="user.display['256x256']"></user-picture>
+        <h1 class="title is-1" v-if='$route.query.new'>Welcome, {{user.first_name || 'mate'}}</h1>
+        <h1 class="title is-1" v-else>Welcome back, {{user.first_name || 'mate'}}</h1>
       </div>
     </header>
     <section class="section" aria-label="Profile details">
@@ -15,11 +17,12 @@
         <loading-spinner v-else-if="user === null"></loading-spinner>
         <form v-else @submit="submitForm($event)">
 
-          <notification
-            v-if="$route.query.new"
-            type="info"
-            :heading="newUserHeading"
-            :body="newUserBody"></notification>
+          <div class="notification is-info" v-if="$route.query.new">
+            <h4>{{newUserHeading}}</h4>
+            <p>
+              {{newUserBody}}
+            </p>
+          </div>
 
           <notification
             v-if="$route.query.reset"
@@ -33,7 +36,7 @@
               <div class="column">
                 <div class="field">
                   <label class="label" for='first_name'>First name *</label>
-                  <div class="control has-icons-left">
+                  <div class="control">
                     <input
                       class="input"
                       type="text"
@@ -42,16 +45,13 @@
                       v-model='user.first_name'
                       v-validate="'required'"
                       required>
-                    <span class="icon is-small is-left">
-                      <i aria-hidden="true" class="fa fa-user"></i>
-                    </span>
                   </div>
                 </div>
               </div>
               <div class="column">
                 <div class="field">
                   <label class="label" for='last_name'>Last name *</label>
-                  <div class="control has-icons-left">
+                  <div class="control">
                     <input
                       class="input"
                       type="text"
@@ -60,16 +60,13 @@
                       v-model='user.last_name'
                       v-validate="'required'"
                       required>
-                    <span class="icon is-small is-left">
-                      <i aria-hidden="true" class="fa fa-user"></i>
-                    </span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="field">
               <label class="label" for='email'>Email address *</label>
-              <div class="control has-icons-left">
+              <div class="control">
                 <input
                   class="input"
                   type="email"
@@ -78,9 +75,6 @@
                   v-model='user.email'
                   v-validate="'required|email'"
                   required>
-                <span class="icon is-small is-left">
-                  <i aria-hidden="true" class="fa fa-envelope"></i>
-                </span>
               </div>
             </div>
           </fieldset>
@@ -89,8 +83,8 @@
               Profile
             </legend>
             <div class="field">
-              <label class="label" for='status'>Status: Tell us what you're up to</label>
-              <div class="control has-icons-left">
+              <label class="label" for='status'>Status: What are you up to?</label>
+              <div class="control">
                 <input
                   class="input"
                   type="text"
@@ -98,15 +92,8 @@
                   id='status'
                   v-model='user.status'
                   v-validate="'max:250'"
-                  maxlength="250"
-                  aria-describedby="description-status">
-                <span class="icon is-small is-left">
-                  <i aria-hidden="true" class="fa fa-bullhorn"></i>
-                </span>
+                  maxlength="250">
               </div>
-              <p class="help" id="description-status">
-                E.g. Getting ready for a gig in Sydney!
-              </p>
             </div>
 
             <div class="field">

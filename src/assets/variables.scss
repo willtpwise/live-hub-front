@@ -1,68 +1,35 @@
 /**
  * Typography
  */
-$font_family_base: 'Open Sans', arial !default;
-$font_weight_base: 400 !default;
-$font_weight_bold: 600 !default;
-$font_weight_light: 300 !default;
-$font_size_base: 16px !default;
-$font_color_base: #000 !default;
-$font_color_light: #fff !default;
-
-$font_size_h1: 3.5rem !default;
-$font_weight_h1: $font_weight_bold !default;
-$font_padding_h1: 0 0 0.65em 0 !default;
-
-$font_size_h2: 3.0rem !default;
-$font_weight_h2: $font_weight_bold !default;
-$font_padding_h2: 0 0 0.65em 0 !default;
-
-$font_size_h3: 2.5rem !default;
-$font_weight_h3: $font_weight_base !default;
-$font_padding_h3: 0 0 0.65em 0 !default;
-
-$font_size_h4: 2.0rem !default;
-$font_weight_h4: $font_weight_base !default;
-$font_padding_h4: 0 0 0.65em 0 !default;
-
-$font_size_h5: 1.8rem !default;
-$font_weight_h5: $font_weight_base !default;
-$font_padding_h5: 0 0 0.65em 0 !default;
-
-$font_size_h6: 1.5rem !default;
-$font_weight_h6: $font_weight_base !default;
-$font_padding_h6: 0 0 0.65em 0 !default;
-
-$font_padding_p: 0 0 0.65em 0 !default;
 
 /**
  * Colours
  */
-$primary: yellow !default;
+$primary: #ffc03d !default;
 $secondary: #006fa5 !default;
 $tertiary: #00344d !default;
 $quarternary: #3bbc75 !default;
-$grey: #ddd !default;
+$grey: #595860 !default;
 
-$primary_dark: $secondary !default;
+$primary_dark: darken($primary, 10%) !default;
 $secondary_dark: darken($secondary, 10%) !default;
 $tertiary_dark: darken($tertiary, 10%) !default;
 $quarternary_dark: darken($quarternary, 10%) !default;
-$grey_dark: darken($grey, 40%) !default;
+$grey_dark: #3a3a3a !default;
 
-$primary_light: $secondary !default;
+$primary_light: #ffd472 !default;
 $secondary_light: lighten($secondary, 10%) !default;
 $tertiary_light: lighten($tertiary, 10%) !default;
 $quarternary_light: lighten($quarternary, 10%) !default;
-$grey_light: lighten($grey, 8%) !default;
+$grey_light: #efefef !default;
 
-$primary_inverse: $font_color_light !default;
-$secondary_inverse: $font_color_light !default;
-$tertiary_inverse: $font_color_light !default;
-$quarternary_inverse: $font_color_light !default;
-$grey_inverse: $font_color_light !default;
-$grey_light_inverse: $font_color_base !default;
-$grey_dark_inverse: $font_color_light !default;
+$primary_inverse: #fff !default;
+$secondary_inverse: #fff !default;
+$tertiary_inverse: #fff !default;
+$quarternary_inverse: #fff !default;
+$grey_inverse: #fff !default;
+$grey_light_inverse: $grey-dark !default;
+$grey_dark_inverse: #fff !default;
 
 /**
  * Formatting & Structure
@@ -73,7 +40,7 @@ $spacing_md: 1.5 * $spacing !default;
 $spacing_sm: 0.5 * $spacing !default;
 $spacing_xs: 0.3 * $spacing !default;
 
-$radius: 3px !default;
+$radius: 4px !default;
 $radius_lg: 6px !default;
 
 $break_sm: 768px !default;
@@ -87,4 +54,4 @@ $desktop: "only screen and (max-width: 1200px)";
 $container: 1100px !default;
 $container_sm: 700px !default;
 
-$background: #fff !default;
+$background: $grey-light !default;

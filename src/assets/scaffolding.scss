@@ -1,0 +1,62 @@
+@import "variables.scss";
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  background: $grey_light;
+  color: $grey_dark;
+}
+
+.title {
+  color: $grey_dark;
+  font-weight: 400; // Regular
+  strong, b {
+    font-weight: 600; // Semi-bold
+  }
+}
+
+strong, b {
+  font-weight: 600; // Semi-bold
+}
+
+.container-small {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+a {
+  color: darken($primary, 30%);
+}
+
+a,
+.button {
+  &:focus {
+    outline-color: $grey;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 3px;
+  }
+}
+
+.button {
+  &.is-primary {
+    color: $grey-dark;
+
+    &:hover,
+    &:focus {
+      color: $grey-dark;
+      background: $primary-dark
+    }
+  }
+}
+
+.image-circle {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.is-primary .title,
+.is-primary {
+  color: $grey-dark
+}

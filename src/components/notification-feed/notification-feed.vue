@@ -5,6 +5,7 @@
     <transition-group name="slide-fade">
       <notification
         v-for='notification in notifications'
+        :class="notification.class"
         :key='notification.id'
         :index='notification.id'
         :title='notification.title'

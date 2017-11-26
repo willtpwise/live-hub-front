@@ -1,3 +1,15 @@
+@import "./../../assets/variables.scss";
+.myaccount {
+  .myaccount-header {
+    background: $primary;
+    text-align: center;
+
+    .user-picture {
+      margin: 0 auto 25px auto;
+    }
+  }
+}
+
 fieldset {
   border: none;
 }

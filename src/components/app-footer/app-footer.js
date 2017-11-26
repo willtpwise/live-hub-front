@@ -1,17 +1,17 @@
-import Chat from 'components/chat/chat.vue'
+// import Chat from 'components/chat/chat.vue'
 
 export default {
   name: 'app-footer',
 
   components: {
-    Chat
+    // Chat
   },
 
   computed: {
     legal () {
       let date = new Date()
       let year = date.getFullYear()
-      return `© ${year} LiveHUB.`
+      return `© ${year} LiveHUB. All rights reserved.`
     }
   },
 

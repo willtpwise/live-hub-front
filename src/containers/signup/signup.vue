@@ -8,17 +8,12 @@
           <h1 class="title is-1 has-text-centered">
             Signup to LiveHub
           </h1>
-          <notification
-            v-if="error"
-            type="warning"
-            :body="error"
-            :dismissable="false"></notification>
-          <p class="subtitle">
+          <p>
             Use your Facebook account to kickstart your LiveHUB profile.
           </p>
         </header>
-        <section>
-          <div class="signup-social-method">
+        <section class="section container-small">
+          <div class="signup-social-method ">
             <div class="signup-button">
               <fb-signin-button
                 class="button button--fb"

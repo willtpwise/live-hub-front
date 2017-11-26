@@ -19,7 +19,11 @@ export default {
       payload = qs.stringify(payload)
       axios.post('/users/', payload)
       .then((response) => {
-        context.commit('setUser', response.data.body[0])
+        if (response.data.body && response.data.body[0]) {
+          context.commit('setUser', response.data.body[0])
+        } else {
+          context.commit('setUser', false)
+        }
       })
     }
   }

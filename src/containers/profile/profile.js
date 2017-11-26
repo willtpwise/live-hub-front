@@ -2,6 +2,7 @@ import Stars from 'components/stars/stars.vue'
 import UserDetails from 'components/user-details/user-details.vue'
 import LoadingSpinner from 'components/loading-spinner/loading-spinner.vue'
 import UserPicture from 'components/user-picture/user-picture.vue'
+import SearchForm from 'components/search-form/search-form.vue'
 
 import { mapState } from 'vuex'
 
@@ -19,7 +20,8 @@ export default {
     Stars,
     UserDetails,
     LoadingSpinner,
-    UserPicture
+    UserPicture,
+    SearchForm
   },
   watch: {
     $route: {

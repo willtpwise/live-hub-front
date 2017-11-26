@@ -10,6 +10,7 @@ export default {
   name: 'user-details',
   props: {
     details: {
+      type: Array,
       required: true
     },
     defaultIcon: {
@@ -20,6 +21,18 @@ export default {
   computed: {
     titleId () {
       return 'user-details-title-' + this._uid
+    },
+
+    detailsFiltered () {
+      var filtered = []
+      if (this.details) {
+        this.details.forEach((detail) => {
+          if (detail.val) {
+            filtered.push(detail)
+          }
+        })
+      }
+      return filtered
     }
   },
   components: {

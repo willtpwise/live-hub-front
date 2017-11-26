@@ -13,7 +13,6 @@ export default {
   data () {
     return {
       loading: false,
-      error: '',
       // The user data from the manual form
       manual: {},
       // The user data from the social API
@@ -27,8 +26,6 @@ export default {
 
   methods: {
     login (payload) {
-      // Clear errors
-      this.error = ''
 
       // Remove any invalid tokens
       localStorage.removeItem('LiveHUB')
@@ -41,21 +38,37 @@ export default {
         if (response.data.token) {
           this.$router.push(this.$route.query['to'] || '/app/myaccount')
         } else {
-          this.error = "Those details don't match up on our side. Try again."
+          this.$store.dispatch('notifications/push', {
+            class: "is-warning",
+            title: 'Login failure...',
+            body: "Those details don't match up on our side. Try again."
+          })
         }
       }).catch((error) => {
         this.loading = false
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          this.error = `<strong>Internal error</strong><br> Sorry but we weren't able to log you in. Try again in a moment.`
+          this.$store.dispatch('notifications/push', {
+            class: "is-warning",
+            title: 'Something went wrong',
+            body: "Sorry but we weren't able to log you in right now. Try again in a moment."
+          })
         } else if (error.request) {
           // The request was made but no response was received
           // `error.request` is an instance of XMLHttpRequest in the browser
-          this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Login is unavailable at this time.`
+          this.$store.dispatch('notifications/push', {
+            class: "is-warning",
+            title: 'Connection error',
+            body: "Your internet connection appears to be down. Login is unavailable at this time."
+          })
         } else {
           // Something happened in setting up the request that triggered an Error
-          this.error = `<strong>Internal error</strong><br> An error occured while creating your account. Login may be unavailable at this time.`
+          this.$store.dispatch('notifications/push', {
+            class: "is-warning",
+            title: 'Internal error',
+            body: "Something went wrong while loging you in. Try again."
+          })
         }
       })
     },
@@ -68,12 +81,15 @@ export default {
 
     socialLogin (response) {
       let token = response.authResponse.accessToken
-      this.error = ''
       this.loading = true
       FB.api('/me/?fields=email', (response) => {
         if (!response || response.error) {
           this.loading = false
-          this.error = `<strong>Connection error</strong><br> Your internet connection appears to be down. Login is unavailable at this time.`
+          this.$store.dispatch('notifications/push', {
+            class: "is-warning",
+            title: 'Connection error',
+            body: "Your internet connection appears to be down. Login is unavailable at this time."
+          })
         } else {
           this.social = {
             email: response.email,
@@ -86,7 +102,18 @@ export default {
     },
 
     socialLoginError (error) {
-      console.log('OH NOES', error)
+      this.$store.dispatch('notifications/push', {
+        class: "is-warning",
+        title: 'Login error',
+        body: "We're having a trouble connecting to Facebook. Try loggin in manually"
+      })
+    }
+  },
+
+  mounted () {
+    var button = this.$el.querySelector('.button.button--fb')
+    if (button) {
+      button.setAttribute('tabindex', 0)
     }
   }
 }

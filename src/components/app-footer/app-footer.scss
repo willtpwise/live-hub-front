@@ -1,10 +1,10 @@
+@import './../../assets/variables.scss';
 .footer {
-  padding: 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   z-index: 100;
+  background: $primary;
+  color: $grey;
+  padding: 0;
 
   .container {
     display: flex;
@@ -20,14 +20,16 @@
 
   .footer-alert {
     margin: auto;
-    font-size: 13px;
+    font-size: 12px;
     padding-left: 12px;
   }
 
   .footer-legal {
     text-align: center;
     margin: auto;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px;
   }
 
   .footer-actions {
@@ -53,8 +55,4 @@
       padding-right: 15px;
     }
   }
-}
-
-body {
-  padding-bottom: 36px;
 }

@@ -38,7 +38,7 @@
       </div>
     </div>
     <p class="help" id="description-display-pic">
-      Your profile picture is public. Suggested image size: 600x600 px
+      Your profile picture is public and can help others identify you. Suggested image size: 600x600 px
     </p>
     <div aria-live='polite' class="notification is-warning" v-if='error'>
       {{error}}
