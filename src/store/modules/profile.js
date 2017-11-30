@@ -42,7 +42,7 @@ export default {
           // something happened in setting up the request that triggered an Error
           context.dispatch('notifications/push', {
             title: 'Internal error',
-            body: "A problem occured when looking up this user. Please try again.",
+            body: 'A problem occured when looking up this user. Please try again.',
             class: 'is-warning'
           }, { root: true })
         }
