@@ -38,7 +38,7 @@ new Vue({
       }
 
       // Blur on route change
-      let focused = document.querySelector('*:focus')
+      let focused = document.querySelector('a:focus, button:focus')
       if (focused) {
         focused.blur()
       }

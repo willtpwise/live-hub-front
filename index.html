@@ -14,16 +14,21 @@
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
   </head>
   <body>
     <script>
       /* global FB */
+      var fbApps = {
+        'livehub.com.au': 1574441412599266,
+        'livehub-staging.net': 1993645014228196,
+        'localhost': 804109516440144
+      }
+
+      var appId = fbApps[location.hostname] || console.error('Unknown host ' + location.hostname)
+
       function fbAsyncInit () {
         FB.init({
-          appId      : 1574441412599266,
+          appId      : appId,
           cookie     : true,
           xfbml      : true,
           version    : 'v2.8'
@@ -42,5 +47,7 @@
      </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet">
   </body>
 </html>
