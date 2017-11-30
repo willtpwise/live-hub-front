@@ -43,9 +43,11 @@ export default {
 
         })
         .catch((e) => {
+          this.isSaving = false
           this.error = "A problem occured when uploading your file. Try again in a few moments"
         })
       } else {
+        this.isSaving = false
         this.error = "Looks like that file isn't an image. Your profile picture needs to be an image"
       }
     }

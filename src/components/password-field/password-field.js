@@ -13,7 +13,7 @@ export default {
 
   watch: {
     passwordsMatch () {
-      if (validLength) {
+      if (this.validLength) {
         this.$emit('passwordChange', this.passwordInitial)
       }
     },

@@ -15,10 +15,11 @@
   .footer-alert,
   .footer-actions,
   .footer-legal {
-    flex: 1;
+    // flex: 1;
   }
 
   .footer-alert {
+    display: none;
     margin: auto;
     font-size: 12px;
     padding-left: 12px;
@@ -34,6 +35,7 @@
 
   .footer-actions {
     display: flex;
+    display: none;
 
     .field {
       margin-left: auto;

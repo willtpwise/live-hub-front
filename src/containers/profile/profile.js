@@ -34,6 +34,7 @@ export default {
     }
   },
   mounted () {
+    this.user = null
     this.$store.dispatch('profile/getUser', {
       id: this.$route.params.id
     })

@@ -81,6 +81,10 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
+    }),
+    // Define the environment
+    new webpack.DefinePlugin({
+      PRODUCTION: true
     })
   ]
 })

@@ -30,12 +30,19 @@ new Vue({
   template: '<App/>',
   components: { App },
   mounted () {
-    // Scroll top on route change
     this.$router.beforeEach((to, from, next) => {
+      // Scroll top on route change
       let isSearchPage = to.name === 'users' && from.name === 'users'
       if (!isSearchPage) {
         window.scrollTo(0, 0)
       }
+
+      // Blur on route change
+      let focused = document.querySelector('*:focus')
+      if (focused) {
+        focused.blur()
+      }
+
       next()
     })
   }
