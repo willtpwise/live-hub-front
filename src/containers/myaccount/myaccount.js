@@ -48,6 +48,11 @@ export default {
   watch: {
     confirmDeleteAccount () {
       this.canDeleteAccount = this.confirmDeleteAccount.toLowerCase() === 'delete'
+    },
+    hasSaved () {
+      if (this.hasSaved) {
+        this.$router.push(`/app/users/${this.user.id}`)
+      }
     }
   },
 

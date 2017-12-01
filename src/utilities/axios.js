@@ -5,8 +5,8 @@ import setToken from 'utilities/set-token.js'
 // Get the endpoint
 var base = (() => {
   var endpoints = {
-    'livehub.com.au': 'https://back.livehub.com.au',
-    'livehub-staging.net': 'https://back.livehub-staging.net',
+    'www.livehub.com.au': 'https://back.livehub.com.au',
+    'www.livehub-staging.net': 'https://back.livehub-staging.net',
     'localhost': 'http://live-hub-back.int'
   }
 
@@ -15,6 +15,7 @@ var base = (() => {
       return endpoints[domain]
     }
   }
+
   console.error('Unknown hostname: ' + location.hostname)
 })()
 
