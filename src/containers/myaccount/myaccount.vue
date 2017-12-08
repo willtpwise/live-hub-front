@@ -126,12 +126,12 @@
           </fieldset>
 
           <fieldset v-if="user.meta">
-            <legend class="title is-2">Social</legend>
+            <legend class="title is-2">Links to your music. </legend>
             <p class="subtitle">
-              Links to your social accounts.
+              Show me what you got!
             </p>
             <details-field
-              :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'Other']"
+              :key-options="['LinkedIn', 'Twitter', 'Facebook', 'SoundCloud', 'YouTube', 'Other']"
               :details="user.meta.social"></details-field>
           </fieldset>
 
@@ -160,7 +160,7 @@
               @passwordChange="acceptPassword($event)"></password-field>
           </fieldset>
 
-          <div class="columns">
+          <div class="columns is-mobile">
             <div class="column">
               <router-link to="/app/myaccount/delete" class="has-text-danger">Delete account</router-link>
             </div>
@@ -173,14 +173,6 @@
                 <span v-if="isSaving">Saving...</span>
                 <span v-else>Save changes</span>
               </button>
-              <p class="help"
-                v-if='hasSaved'
-                aria-live='polite'>
-                Changes saved
-                <router-link
-                  :to="`/app/users/${user.id}`"
-                  aria-label="View your public profile">
-                  view profile</router-link>.
               </p>
             </div>
           </div>

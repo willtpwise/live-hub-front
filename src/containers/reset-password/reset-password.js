@@ -17,14 +17,21 @@ export default {
       let payload = {
         'email': this.email
       }
-      console.log(payload)
       axios.post('/password-reset/', qs.stringify(payload))
       .then((response) => {
         this.loading = false
         if (response.data.body === 'success') {
-          this.state = 'success'
+          this.$store.dispatch('notifications/push', {
+            title: 'Email sent',
+            body: 'Check your email for the next few steps.',
+            class: 'is-info'
+          })
         } else {
-          this.state = 'error'
+          this.$store.dispatch('notifications/push', {
+            title: 'A problem occured',
+            body: 'A problem occured whilst resetting your password. Try again.',
+            class: 'is-warning'
+          })
         }
       })
     }

@@ -37,7 +37,7 @@
               </div>
               <div class="header-profile navbar-item has-dropdown is-hoverable" v-if='user'>
                 <router-link
-                  :to='user.id | profileLink'
+                  :to='user.link'
                   aria-label="Click to visit your public profile"
                   title="Visit my public profile"
                   class="navbar-link">

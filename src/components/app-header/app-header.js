@@ -43,11 +43,5 @@ export default {
       this.menuOpen = false
       next()
     })
-  },
-
-  filters: {
-    profileLink (id) {
-      return '/app/users/' + id
-    }
   }
 }

@@ -16,26 +16,6 @@
         <section class="section password-reset-form">
           <form @submit="resetPassword($event)" class="container-small">
 
-            <div
-              v-if="state === 'success'"
-              class="notification is-success"
-              aria-live='polite'
-              aria-labelledby="success-title">
-              <p id="success-title">
-                <strong>Success!</strong><br> Check your email for the next few steps.
-              </p>
-            </div>
-
-            <div
-              v-if="state === 'error'"
-              class="notification is-warning"
-              aria-live='polite'
-              aria-labelledby="error-title">
-              <p id="error-title">
-                <strong>Oops!</strong> An error occured when resetting your password. Try again in a moment.
-              </p>
-            </div>
-
             <div class="field">
               <label class="label" for='email'>Email</label>
               <div class="control has-icons-left">
@@ -63,6 +43,10 @@
                 <span v-else>Reset my password</span>
               </button>
             </div>
+
+            <p v-if='state === "success"'>
+              Check your email for the next few steps. Having trouble? Contact us: <a href="mailto:mike@livehub.com.au">mike@livehub.com.au</a>
+            </p>
           </form>
         </section>
       </div>

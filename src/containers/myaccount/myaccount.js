@@ -51,7 +51,7 @@ export default {
     },
     hasSaved () {
       if (this.hasSaved) {
-        this.$router.push(`/app/users/${this.user.id}`)
+        this.$router.push(this.user.link)
       }
     }
   },
@@ -64,7 +64,7 @@ export default {
     submitForm (e) {
       e.preventDefault()
       this.isSaving = true
-      let handleSaveComplete = () => {
+      var handleSaveComplete = () => {
         this.isSaving = false
         this.hasSaved = true
         document.removeEventListener('setUserComplete', handleSaveComplete);
@@ -90,5 +90,13 @@ export default {
   },
   mounted () {
     this.$store.dispatch('current/getUser')
+
+    if (this.$router.query.reset) {
+      this.$store.dispatch('notifications/push', {
+        title: 'Password Saved',
+        body: 'Your new password has been saved',
+        class: 'is-info'
+      })
+    }
   }
 }

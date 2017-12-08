@@ -6,7 +6,7 @@
       <div class="container">
         <header class="hero">
           <h1 class="title is-1 has-text-centered">
-            Signup to LiveHub
+            Signup to LiveHUB
           </h1>
           <p>
             Use your Facebook account to kickstart your LiveHUB profile.
