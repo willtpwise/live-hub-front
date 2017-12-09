@@ -1,7 +1,7 @@
 <style src='./app-header.scss' lang='scss'></style>
 <script src='./app-header.js'></script>
 <template>
-  <header class="header" :class="{'is-active': menuOpen}">
+  <header class="header" role="header" :class="{'is-active': menuOpen}">
     <div class="container">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="container">

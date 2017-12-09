@@ -3,6 +3,7 @@ import UserDetails from 'components/user-details/user-details.vue'
 import LoadingSpinner from 'components/loading-spinner/loading-spinner.vue'
 import UserPicture from 'components/user-picture/user-picture.vue'
 import SearchForm from 'components/search-form/search-form.vue'
+import Emoji from 'components/emoji/emoji.vue'
 
 import { mapState } from 'vuex'
 
@@ -21,7 +22,8 @@ export default {
     UserDetails,
     LoadingSpinner,
     UserPicture,
-    SearchForm
+    SearchForm,
+    Emoji
   },
   watch: {
     $route: {

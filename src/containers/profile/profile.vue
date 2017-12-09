@@ -30,7 +30,7 @@
                     <strong>{{fullName}}</strong>
                   </h1>
                   <p v-if='user.status'>
-                    <span title='Status'>{{user.status}}</span>
+                    <emoji title="Status" :content="user.status"></emoji>
                   </p>
                 </div>
               </div>
