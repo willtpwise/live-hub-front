@@ -2,6 +2,7 @@
 <script src='./icon.js'></script>
 <template>
   <span class="icon">
-    <i class="fa" :class="className" aria-hidden="true"></i>
+    <i v-if="classname" class="fa" :class="classname" aria-hidden="true"></i>
+    <img v-if="src" :src="src">
   </span>
 </template>
