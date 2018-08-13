@@ -95,7 +95,7 @@ export default {
             body: "You're internet connection appears to be down."
           })
         } else {
-          FB.api(`/${user.id}/picture?height=600&width=600`, (picture) => {
+          FB.api(`/${user.id}/picture?height=600&width=600&redirect=false`, (picture) => {
             if (!picture || picture.error) {
               this.loading = false
               this.$store.dispatch('notifications/push', {
