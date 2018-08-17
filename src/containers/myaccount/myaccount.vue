@@ -107,7 +107,7 @@
                     name="contact-pref"
                     value="phone"
                     v-model="user.contact_preference">
-                  By phone
+                  By SMS
                 </label>
                 <label class="checkbox">
                   <input
