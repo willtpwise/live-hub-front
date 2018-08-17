@@ -64,17 +64,59 @@
                 </div>
               </div>
             </div>
-            <div class="field">
-              <label class="label" for='email'>Email address *</label>
+
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label" for='email'>Email address *</label>
+                  <div class="control">
+                    <input
+                      class="input"
+                      type="email"
+                      name="email"
+                      id='email'
+                      v-model='user.email'
+                      v-validate="'required|email'"
+                      required>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <label class="label" for='email'>Phone *</label>
+                  <div class="control">
+                    <input
+                      class="input"
+                      type="tel"
+                      name="tel"
+                      id='tel'
+                      v-model='user.tel'
+                      v-validate="'required'"
+                      required>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field user-type-field">
+              <label class="label" for='user-type'>How should we contact you?</label>
               <div class="control">
-                <input
-                  class="input"
-                  type="email"
-                  name="email"
-                  id='email'
-                  v-model='user.email'
-                  v-validate="'required|email'"
-                  required>
+                <label class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="contact-pref"
+                    value="phone"
+                    v-model="user.contact_preference">
+                  By SMS
+                </label>
+                <label class="checkbox">
+                  <input
+                    type="checkbox"
+                    name="contact-pref"
+                    value="email"
+                    v-model="user.contact_preference">
+                  By email
+                </label>
               </div>
             </div>
           </fieldset>
